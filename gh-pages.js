@@ -3,7 +3,7 @@ var ghpages = require('gh-pages');
 ghpages.publish(
   'public', // path to public directory
   {
-    branch: 'main',
+    branch: 'ghpages',
     repo: 'https://github.com/CH-Vince/binance-triangular-arbitrage-monitor.git', // Update to point to your repository
     user: {
       name: 'Vince Liem', // update to use your name
