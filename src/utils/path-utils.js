@@ -1,12 +1,10 @@
-import Decimal from 'decimal.js'
-
 export const generatePaths = currencies => {
   return currencies
     .map(currency => currencies.map(currency2 => currencies.map(currency3 => {
       if (currency !== currency2 && currency !== currency3 && currency2 !== currency3) {
         return ({
           path: [currency, currency2, currency3],
-          startingCurrency: currency,
+          joined: `${currency}/${currency2}/${currency3}`,
         })
       }
       return null
@@ -15,7 +13,7 @@ export const generatePaths = currencies => {
     .filter(Boolean)
     .reduce((acc, pathObj) => {
       const {path} = pathObj
-      const current = acc.map(a => a.path.join())
+      const current = acc.map(a => a.joined)
       if (
         !current.includes(path.join())
         && !current.includes([path[1], path[2], path[0]].join())
@@ -29,92 +27,53 @@ export const generatePaths = currencies => {
 
 export const addPairs = pairings => path => ({
   ...path,
-  pairs: path.path.map((currency, idx) => {
-    const nextCurrency = path.path[path.path[idx + 1] ? idx + 1 : 0]
-    if (pairings[currency] && pairings[currency].includes(nextCurrency)) {
-      return {
-        base: nextCurrency,
-        quote: currency,
-        get id() {
-          return `${this.base}${this.quote}`
-        },
-        side: 'BUY',
+  pairs: path.path
+    .map((currency, idx) => {
+      const nextCurrency = path.path[path.path[idx + 1] ? idx + 1 : 0]
+      if (pairings[currency] && pairings[currency].includes(nextCurrency)) {
+        return {base: nextCurrency, quote: currency, side: 'BUY'}
       }
-    }
-    if (pairings[nextCurrency] && pairings[nextCurrency].includes(currency)) {
-      return {
-        base: currency,
-        quote: nextCurrency,
-        get id() {
-          return `${this.base}${this.quote}`
-        },
-        side: 'SELL',
+      if (pairings[nextCurrency] && pairings[nextCurrency].includes(currency)) {
+        return {base: currency, quote: nextCurrency, side: 'SELL'}
       }
-    }
-    return null
-  }),
+      return null
+    })
+    .map(pair => {
+      if (pair) {
+        return {
+          ...pair,
+          get id() {
+            return `${this.base}${this.quote}`
+          },
+          get tickerName() {
+            return `${this.id.toLowerCase()}@bookTicker`
+          },
+        }
+      }
+      return null
+    }),
 })
 
-export const pairsMap = (...callbacks) => path => callbacks.reduce((path, callback) => ({
-  ...path,
-  pairs: path.pairs.map(callback),
-}), path)
+export const addPercentChange = (prices, feePerTrade) => path => {
+  const rawFeePerTrade = (feePerTrade || 0) / 1000000
+  const startBalance = 1
 
-export const addBalanceName = pair => ({
-  ...pair,
-  toName: pair.side === 'BUY' ? pair.base : pair.quote,
-  fromName: pair.side === 'BUY' ? pair.quote : pair.base,
-})
-
-export const addPrice = prices => pair => ({
-  ...pair,
-  price: prices[pair.id] || {'BUY': 0, 'SELL': Infinity},
-})
-
-export const addBalance = feePerTrade => {
-  const rawFeePerTrade = new Decimal(feePerTrade || 0).div(1000000)
-
-  const recursive = (pair, idx, pairs) => {
-    const balance = new Decimal(
-      idx === 0
-        ? 1
-        : recursive(pairs[idx - 1], idx - 1, pairs).balance,
-    )
-
-    const calculator = {
-      get 'BUY'() {
-        const fee = balance.times(rawFeePerTrade)
-        const balanceAfterFee = balance.minus(fee)
-        return balanceAfterFee.div(pair.price['BUY'])
-      },
-      get 'SELL'() {
-        const balanceAfterSold = balance.times(pair.price['SELL'])
-        const fee = balanceAfterSold.times(rawFeePerTrade)
-        return balanceAfterSold.minus(fee)
-      },
+  const endBalance = path.pairs.reduce((balance, pair) => {
+    if (pair.side === 'BUY') {
+      const fee = balance * rawFeePerTrade
+      const balanceAfterFee = balance - fee
+      return balanceAfterFee / (prices[pair.id]?.['BUY'] || 0)
     }
+    const balanceAfterSold = balance * (prices[pair.id]?.['SELL'] || Infinity)
+    const fee = balanceAfterSold * rawFeePerTrade
+    return balanceAfterSold - fee
+  }, startBalance)
 
-    return {
-      ...pair,
-      balance: calculator[pair.side],
-    }
-  }
-
-  return recursive
-}
-
-export const addFinalBalance = path => {
-  const startBalance = new Decimal(1)
-  const endBalance = path.pairs[path.pairs.length - 1].balance
+  const finalBalance = endBalance - startBalance
 
   return {
     ...path,
-    finalBalance: endBalance.minus(startBalance),
-    get percent() {
-      return this.finalBalance.div(startBalance.abs()).mul(100)
-    },
-    get isProfitable() {
-      return this.finalBalance > 0
-    },
+    percent: finalBalance / Math.abs(startBalance) * 100,
+    isProfitable: finalBalance > 0,
   }
 }

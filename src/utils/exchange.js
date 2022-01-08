@@ -9,9 +9,9 @@ export const getPairings = () => {
   return getMarketData()
     .then(marketData => {
       return Object.values(marketData).reduce((acc, market, idx) => {
-        if (idx === 0) {
-          console.log(market)
-        }
+        // if (idx === 0) {
+        //   console.log(market)
+        // }
 
         if (!market.active || !market.spot) {
           return acc
@@ -35,10 +35,13 @@ export const getPairings = () => {
             if (quote2 === quote) {
               return false
             }
-            return bases2.includes(base);
+            return bases2.includes(base)
           })
         })
         return acc
       }, {})
     })
 }
+
+export const subscribeAction = params => JSON.stringify({method: 'SUBSCRIBE', params, id: 1})
+export const unsubscribeAction = params => JSON.stringify({method: 'UNSUBSCRIBE', params, id: 312})

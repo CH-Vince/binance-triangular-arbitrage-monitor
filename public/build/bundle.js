@@ -1,2 +1,1445 @@
-var app=function(){"use strict";function e(){}function n(e){return e()}function t(){return Object.create(null)}function r(e){e.forEach(n)}function i(e){return"function"==typeof e}function s(e,n){return e!=e?n==n:e!==n||e&&"object"==typeof e||"function"==typeof e}function o(e,n){e.appendChild(n)}function u(e,n,t){e.insertBefore(n,t||null)}function c(e){e.parentNode.removeChild(e)}function l(e,n){for(let t=0;t<e.length;t+=1)e[t]&&e[t].d(n)}function a(e){return document.createElement(e)}function f(e){return document.createTextNode(e)}function d(){return f(" ")}function h(e,n,t,r){return e.addEventListener(n,t,r),()=>e.removeEventListener(n,t,r)}function p(e,n,t){null==t?e.removeAttribute(n):e.getAttribute(n)!==t&&e.setAttribute(n,t)}function g(e,n,t){const r=new Set;for(let n=0;n<e.length;n+=1)e[n].checked&&r.add(e[n].__value);return t||r.delete(n),Array.from(r)}function m(e){return""===e?null:+e}function w(e,n){n=""+n,e.wholeText!==n&&(e.data=n)}function v(e,n){e.value=null==n?"":n}function b(e,n,t,r){e.style.setProperty(n,t,r?"important":"")}let N;function x(e){N=e}function y(e){(function(){if(!N)throw new Error("Function called outside component initialization");return N})().$$.on_mount.push(e)}const E=[],_=[],$=[],O=[],S=Promise.resolve();let k=!1;function M(e){$.push(e)}const q=new Set;let F=0;function B(){const e=N;do{for(;F<E.length;){const e=E[F];F++,x(e),P(e.$$)}for(x(null),E.length=0,F=0;_.length;)_.pop()();for(let e=0;e<$.length;e+=1){const n=$[e];q.has(n)||(q.add(n),n())}$.length=0}while(E.length);for(;O.length;)O.pop()();k=!1,q.clear(),x(e)}function P(e){if(null!==e.fragment){e.update(),r(e.before_update);const n=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,n),e.after_update.forEach(M)}}const L=new Set;function A(e,n){e&&e.i&&(L.delete(e),e.i(n))}function U(e,n){e.d(1),n.delete(e.key)}function D(e,n){-1===e.$$.dirty[0]&&(E.push(e),k||(k=!0,S.then(B)),e.$$.dirty.fill(0)),e.$$.dirty[n/31|0]|=1<<n%31}function T(s,o,u,l,a,f,d,h=[-1]){const p=N;x(s);const g=s.$$={fragment:null,ctx:null,props:f,update:e,not_equal:a,bound:t(),on_mount:[],on_destroy:[],on_disconnect:[],before_update:[],after_update:[],context:new Map(o.context||(p?p.$$.context:[])),callbacks:t(),dirty:h,skip_bound:!1,root:o.target||p.$$.root};d&&d(g.root);let m=!1;if(g.ctx=u?u(s,o.props||{},((e,n,...t)=>{const r=t.length?t[0]:n;return g.ctx&&a(g.ctx[e],g.ctx[e]=r)&&(!g.skip_bound&&g.bound[e]&&g.bound[e](r),m&&D(s,e)),n})):[],g.update(),m=!0,r(g.before_update),g.fragment=!!l&&l(g.ctx),o.target){if(o.hydrate){const e=function(e){return Array.from(e.childNodes)}(o.target);g.fragment&&g.fragment.l(e),e.forEach(c)}else g.fragment&&g.fragment.c();o.intro&&A(s.$$.fragment),function(e,t,s,o){const{fragment:u,on_mount:c,on_destroy:l,after_update:a}=e.$$;u&&u.m(t,s),o||M((()=>{const t=c.map(n).filter(i);l?l.push(...t):r(t),e.$$.on_mount=[]})),a.forEach(M)}(s,o.target,o.anchor,o.customElement),B()}x(p)}var C,Z="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{},R={exports:{}};C=R,function(e){var n,t,r,i,s=9e15,o=1e9,u="0123456789abcdef",c="2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058",l="3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789",a={precision:20,rounding:4,modulo:1,toExpNeg:-7,toExpPos:21,minE:-s,maxE:s,crypto:!1},f=!0,d="[DecimalError] ",h=d+"Invalid argument: ",p=d+"Precision limit exceeded",g=d+"crypto unavailable",m="[object Decimal]",w=Math.floor,v=Math.pow,b=/^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i,N=/^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i,x=/^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i,y=/^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,E=1e7,_=c.length-1,$=l.length-1,O={toStringTag:m};function S(e){var n,t,r,i=e.length-1,s="",o=e[0];if(i>0){for(s+=o,n=1;n<i;n++)(t=7-(r=e[n]+"").length)&&(s+=T(t)),s+=r;(t=7-(r=(o=e[n])+"").length)&&(s+=T(t))}else if(0===o)return"0";for(;o%10==0;)o/=10;return s+o}function k(e,n,t){if(e!==~~e||e<n||e>t)throw Error(h+e)}function M(e,n,t,r){var i,s,o,u;for(s=e[0];s>=10;s/=10)--n;return--n<0?(n+=7,i=0):(i=Math.ceil((n+1)/7),n%=7),s=v(10,7-n),u=e[i]%s|0,null==r?n<3?(0==n?u=u/100|0:1==n&&(u=u/10|0),o=t<4&&99999==u||t>3&&49999==u||5e4==u||0==u):o=(t<4&&u+1==s||t>3&&u+1==s/2)&&(e[i+1]/s/100|0)==v(10,n-2)-1||(u==s/2||0==u)&&0==(e[i+1]/s/100|0):n<4?(0==n?u=u/1e3|0:1==n?u=u/100|0:2==n&&(u=u/10|0),o=(r||t<4)&&9999==u||!r&&t>3&&4999==u):o=((r||t<4)&&u+1==s||!r&&t>3&&u+1==s/2)&&(e[i+1]/s/1e3|0)==v(10,n-3)-1,o}function q(e,n,t){for(var r,i,s=[0],o=0,c=e.length;o<c;){for(i=s.length;i--;)s[i]*=n;for(s[0]+=u.indexOf(e.charAt(o++)),r=0;r<s.length;r++)s[r]>t-1&&(void 0===s[r+1]&&(s[r+1]=0),s[r+1]+=s[r]/t|0,s[r]%=t)}return s.reverse()}O.absoluteValue=O.abs=function(){var e=new this.constructor(this);return e.s<0&&(e.s=1),B(e)},O.ceil=function(){return B(new this.constructor(this),this.e+1,2)},O.clampedTo=O.clamp=function(e,n){var t=this,r=t.constructor;if(e=new r(e),n=new r(n),!e.s||!n.s)return new r(NaN);if(e.gt(n))throw Error(h+n);return t.cmp(e)<0?e:t.cmp(n)>0?n:new r(t)},O.comparedTo=O.cmp=function(e){var n,t,r,i,s=this,o=s.d,u=(e=new s.constructor(e)).d,c=s.s,l=e.s;if(!o||!u)return c&&l?c!==l?c:o===u?0:!o^c<0?1:-1:NaN;if(!o[0]||!u[0])return o[0]?c:u[0]?-l:0;if(c!==l)return c;if(s.e!==e.e)return s.e>e.e^c<0?1:-1;for(n=0,t=(r=o.length)<(i=u.length)?r:i;n<t;++n)if(o[n]!==u[n])return o[n]>u[n]^c<0?1:-1;return r===i?0:r>i^c<0?1:-1},O.cosine=O.cos=function(){var e,n,t=this,r=t.constructor;return t.d?t.d[0]?(e=r.precision,n=r.rounding,r.precision=e+Math.max(t.e,t.sd())+7,r.rounding=1,t=function(e,n){var t,r,i;if(n.isZero())return n;(r=n.d.length)<32?i=(1/z(4,t=Math.ceil(r/3))).toString():(t=16,i="2.3283064365386962890625e-10"),e.precision+=t,n=W(e,1,n.times(i),new e(1));for(var s=t;s--;){var o=n.times(n);n=o.times(o).minus(o).times(8).plus(1)}return e.precision-=t,n}(r,G(r,t)),r.precision=e,r.rounding=n,B(2==i||3==i?t.neg():t,e,n,!0)):new r(1):new r(NaN)},O.cubeRoot=O.cbrt=function(){var e,n,t,r,i,s,o,u,c,l,a=this,d=a.constructor;if(!a.isFinite()||a.isZero())return new d(a);for(f=!1,(s=a.s*v(a.s*a,1/3))&&Math.abs(s)!=1/0?r=new d(s.toString()):(t=S(a.d),(s=((e=a.e)-t.length+1)%3)&&(t+=1==s||-2==s?"0":"00"),s=v(t,1/3),e=w((e+1)/3)-(e%3==(e<0?-1:2)),(r=new d(t=s==1/0?"5e"+e:(t=s.toExponential()).slice(0,t.indexOf("e")+1)+e)).s=a.s),o=(e=d.precision)+3;;)if(l=(c=(u=r).times(u).times(u)).plus(a),r=F(l.plus(a).times(u),l.plus(c),o+2,1),S(u.d).slice(0,o)===(t=S(r.d)).slice(0,o)){if("9999"!=(t=t.slice(o-3,o+1))&&(i||"4999"!=t)){+t&&(+t.slice(1)||"5"!=t.charAt(0))||(B(r,e+1,1),n=!r.times(r).times(r).eq(a));break}if(!i&&(B(u,e+1,0),u.times(u).times(u).eq(a))){r=u;break}o+=4,i=1}return f=!0,B(r,e,d.rounding,n)},O.decimalPlaces=O.dp=function(){var e,n=this.d,t=NaN;if(n){if(t=7*((e=n.length-1)-w(this.e/7)),e=n[e])for(;e%10==0;e/=10)t--;t<0&&(t=0)}return t},O.dividedBy=O.div=function(e){return F(this,new this.constructor(e))},O.dividedToIntegerBy=O.divToInt=function(e){var n=this.constructor;return B(F(this,new n(e),0,1,1),n.precision,n.rounding)},O.equals=O.eq=function(e){return 0===this.cmp(e)},O.floor=function(){return B(new this.constructor(this),this.e+1,3)},O.greaterThan=O.gt=function(e){return this.cmp(e)>0},O.greaterThanOrEqualTo=O.gte=function(e){var n=this.cmp(e);return 1==n||0===n},O.hyperbolicCosine=O.cosh=function(){var e,n,t,r,i,s=this,o=s.constructor,u=new o(1);if(!s.isFinite())return new o(s.s?1/0:NaN);if(s.isZero())return u;t=o.precision,r=o.rounding,o.precision=t+Math.max(s.e,s.sd())+4,o.rounding=1,(i=s.d.length)<32?n=(1/z(4,e=Math.ceil(i/3))).toString():(e=16,n="2.3283064365386962890625e-10"),s=W(o,1,s.times(n),new o(1),!0);for(var c,l=e,a=new o(8);l--;)c=s.times(s),s=u.minus(c.times(a.minus(c.times(a))));return B(s,o.precision=t,o.rounding=r,!0)},O.hyperbolicSine=O.sinh=function(){var e,n,t,r,i=this,s=i.constructor;if(!i.isFinite()||i.isZero())return new s(i);if(n=s.precision,t=s.rounding,s.precision=n+Math.max(i.e,i.sd())+4,s.rounding=1,(r=i.d.length)<3)i=W(s,2,i,i,!0);else{e=(e=1.4*Math.sqrt(r))>16?16:0|e,i=W(s,2,i=i.times(1/z(5,e)),i,!0);for(var o,u=new s(5),c=new s(16),l=new s(20);e--;)o=i.times(i),i=i.times(u.plus(o.times(c.times(o).plus(l))))}return s.precision=n,s.rounding=t,B(i,n,t,!0)},O.hyperbolicTangent=O.tanh=function(){var e,n,t=this,r=t.constructor;return t.isFinite()?t.isZero()?new r(t):(e=r.precision,n=r.rounding,r.precision=e+7,r.rounding=1,F(t.sinh(),t.cosh(),r.precision=e,r.rounding=n)):new r(t.s)},O.inverseCosine=O.acos=function(){var e,n=this,t=n.constructor,r=n.abs().cmp(1),i=t.precision,s=t.rounding;return-1!==r?0===r?n.isNeg()?U(t,i,s):new t(0):new t(NaN):n.isZero()?U(t,i+4,s).times(.5):(t.precision=i+6,t.rounding=1,n=n.asin(),e=U(t,i+4,s).times(.5),t.precision=i,t.rounding=s,e.minus(n))},O.inverseHyperbolicCosine=O.acosh=function(){var e,n,t=this,r=t.constructor;return t.lte(1)?new r(t.eq(1)?0:NaN):t.isFinite()?(e=r.precision,n=r.rounding,r.precision=e+Math.max(Math.abs(t.e),t.sd())+4,r.rounding=1,f=!1,t=t.times(t).minus(1).sqrt().plus(t),f=!0,r.precision=e,r.rounding=n,t.ln()):new r(t)},O.inverseHyperbolicSine=O.asinh=function(){var e,n,t=this,r=t.constructor;return!t.isFinite()||t.isZero()?new r(t):(e=r.precision,n=r.rounding,r.precision=e+2*Math.max(Math.abs(t.e),t.sd())+6,r.rounding=1,f=!1,t=t.times(t).plus(1).sqrt().plus(t),f=!0,r.precision=e,r.rounding=n,t.ln())},O.inverseHyperbolicTangent=O.atanh=function(){var e,n,t,r,i=this,s=i.constructor;return i.isFinite()?i.e>=0?new s(i.abs().eq(1)?i.s/0:i.isZero()?i:NaN):(e=s.precision,n=s.rounding,r=i.sd(),Math.max(r,e)<2*-i.e-1?B(new s(i),e,n,!0):(s.precision=t=r-i.e,i=F(i.plus(1),new s(1).minus(i),t+e,1),s.precision=e+4,s.rounding=1,i=i.ln(),s.precision=e,s.rounding=n,i.times(.5))):new s(NaN)},O.inverseSine=O.asin=function(){var e,n,t,r,i=this,s=i.constructor;return i.isZero()?new s(i):(n=i.abs().cmp(1),t=s.precision,r=s.rounding,-1!==n?0===n?((e=U(s,t+4,r).times(.5)).s=i.s,e):new s(NaN):(s.precision=t+6,s.rounding=1,i=i.div(new s(1).minus(i.times(i)).sqrt().plus(1)).atan(),s.precision=t,s.rounding=r,i.times(2)))},O.inverseTangent=O.atan=function(){var e,n,t,r,i,s,o,u,c,l=this,a=l.constructor,d=a.precision,h=a.rounding;if(l.isFinite()){if(l.isZero())return new a(l);if(l.abs().eq(1)&&d+4<=$)return(o=U(a,d+4,h).times(.25)).s=l.s,o}else{if(!l.s)return new a(NaN);if(d+4<=$)return(o=U(a,d+4,h).times(.5)).s=l.s,o}for(a.precision=u=d+10,a.rounding=1,e=t=Math.min(28,u/7+2|0);e;--e)l=l.div(l.times(l).plus(1).sqrt().plus(1));for(f=!1,n=Math.ceil(u/7),r=1,c=l.times(l),o=new a(l),i=l;-1!==e;)if(i=i.times(c),s=o.minus(i.div(r+=2)),i=i.times(c),void 0!==(o=s.plus(i.div(r+=2))).d[n])for(e=n;o.d[e]===s.d[e]&&e--;);return t&&(o=o.times(2<<t-1)),f=!0,B(o,a.precision=d,a.rounding=h,!0)},O.isFinite=function(){return!!this.d},O.isInteger=O.isInt=function(){return!!this.d&&w(this.e/7)>this.d.length-2},O.isNaN=function(){return!this.s},O.isNegative=O.isNeg=function(){return this.s<0},O.isPositive=O.isPos=function(){return this.s>0},O.isZero=function(){return!!this.d&&0===this.d[0]},O.lessThan=O.lt=function(e){return this.cmp(e)<0},O.lessThanOrEqualTo=O.lte=function(e){return this.cmp(e)<1},O.logarithm=O.log=function(e){var n,t,r,i,s,o,u,c,l=this,a=l.constructor,d=a.precision,h=a.rounding;if(null==e)e=new a(10),n=!0;else{if(t=(e=new a(e)).d,e.s<0||!t||!t[0]||e.eq(1))return new a(NaN);n=e.eq(10)}if(t=l.d,l.s<0||!t||!t[0]||l.eq(1))return new a(t&&!t[0]?-1/0:1!=l.s?NaN:t?0:1/0);if(n)if(t.length>1)s=!0;else{for(i=t[0];i%10==0;)i/=10;s=1!==i}if(f=!1,o=H(l,u=d+5),r=n?A(a,u+10):H(e,u),M((c=F(o,r,u,1)).d,i=d,h))do{if(o=H(l,u+=10),r=n?A(a,u+10):H(e,u),c=F(o,r,u,1),!s){+S(c.d).slice(i+1,i+15)+1==1e14&&(c=B(c,d+1,0));break}}while(M(c.d,i+=10,h));return f=!0,B(c,d,h)},O.minus=O.sub=function(e){var n,t,r,i,s,o,u,c,l,a,d,h,p=this,g=p.constructor;if(e=new g(e),!p.d||!e.d)return p.s&&e.s?p.d?e.s=-e.s:e=new g(e.d||p.s!==e.s?p:NaN):e=new g(NaN),e;if(p.s!=e.s)return e.s=-e.s,p.plus(e);if(l=p.d,h=e.d,u=g.precision,c=g.rounding,!l[0]||!h[0]){if(h[0])e.s=-e.s;else{if(!l[0])return new g(3===c?-0:0);e=new g(p)}return f?B(e,u,c):e}if(t=w(e.e/7),a=w(p.e/7),l=l.slice(),s=a-t){for((d=s<0)?(n=l,s=-s,o=h.length):(n=h,t=a,o=l.length),s>(r=Math.max(Math.ceil(u/7),o)+2)&&(s=r,n.length=1),n.reverse(),r=s;r--;)n.push(0);n.reverse()}else{for((d=(r=l.length)<(o=h.length))&&(o=r),r=0;r<o;r++)if(l[r]!=h[r]){d=l[r]<h[r];break}s=0}for(d&&(n=l,l=h,h=n,e.s=-e.s),o=l.length,r=h.length-o;r>0;--r)l[o++]=0;for(r=h.length;r>s;){if(l[--r]<h[r]){for(i=r;i&&0===l[--i];)l[i]=E-1;--l[i],l[r]+=E}l[r]-=h[r]}for(;0===l[--o];)l.pop();for(;0===l[0];l.shift())--t;return l[0]?(e.d=l,e.e=L(l,t),f?B(e,u,c):e):new g(3===c?-0:0)},O.modulo=O.mod=function(e){var n,t=this,r=t.constructor;return e=new r(e),!t.d||!e.s||e.d&&!e.d[0]?new r(NaN):!e.d||t.d&&!t.d[0]?B(new r(t),r.precision,r.rounding):(f=!1,9==r.modulo?(n=F(t,e.abs(),0,3,1)).s*=e.s:n=F(t,e,0,r.modulo,1),n=n.times(e),f=!0,t.minus(n))},O.naturalExponential=O.exp=function(){return I(this)},O.naturalLogarithm=O.ln=function(){return H(this)},O.negated=O.neg=function(){var e=new this.constructor(this);return e.s=-e.s,B(e)},O.plus=O.add=function(e){var n,t,r,i,s,o,u,c,l,a,d=this,h=d.constructor;if(e=new h(e),!d.d||!e.d)return d.s&&e.s?d.d||(e=new h(e.d||d.s===e.s?d:NaN)):e=new h(NaN),e;if(d.s!=e.s)return e.s=-e.s,d.minus(e);if(l=d.d,a=e.d,u=h.precision,c=h.rounding,!l[0]||!a[0])return a[0]||(e=new h(d)),f?B(e,u,c):e;if(s=w(d.e/7),r=w(e.e/7),l=l.slice(),i=s-r){for(i<0?(t=l,i=-i,o=a.length):(t=a,r=s,o=l.length),i>(o=(s=Math.ceil(u/7))>o?s+1:o+1)&&(i=o,t.length=1),t.reverse();i--;)t.push(0);t.reverse()}for((o=l.length)-(i=a.length)<0&&(i=o,t=a,a=l,l=t),n=0;i;)n=(l[--i]=l[i]+a[i]+n)/E|0,l[i]%=E;for(n&&(l.unshift(n),++r),o=l.length;0==l[--o];)l.pop();return e.d=l,e.e=L(l,r),f?B(e,u,c):e},O.precision=O.sd=function(e){var n,t=this;if(void 0!==e&&e!==!!e&&1!==e&&0!==e)throw Error(h+e);return t.d?(n=D(t.d),e&&t.e+1>n&&(n=t.e+1)):n=NaN,n},O.round=function(){var e=this,n=e.constructor;return B(new n(e),e.e+1,n.rounding)},O.sine=O.sin=function(){var e,n,t=this,r=t.constructor;return t.isFinite()?t.isZero()?new r(t):(e=r.precision,n=r.rounding,r.precision=e+Math.max(t.e,t.sd())+7,r.rounding=1,t=function(e,n){var t,r=n.d.length;if(r<3)return n.isZero()?n:W(e,2,n,n);t=(t=1.4*Math.sqrt(r))>16?16:0|t,n=n.times(1/z(5,t)),n=W(e,2,n,n);for(var i,s=new e(5),o=new e(16),u=new e(20);t--;)i=n.times(n),n=n.times(s.plus(i.times(o.times(i).minus(u))));return n}(r,G(r,t)),r.precision=e,r.rounding=n,B(i>2?t.neg():t,e,n,!0)):new r(NaN)},O.squareRoot=O.sqrt=function(){var e,n,t,r,i,s,o=this,u=o.d,c=o.e,l=o.s,a=o.constructor;if(1!==l||!u||!u[0])return new a(!l||l<0&&(!u||u[0])?NaN:u?o:1/0);for(f=!1,0==(l=Math.sqrt(+o))||l==1/0?(((n=S(u)).length+c)%2==0&&(n+="0"),l=Math.sqrt(n),c=w((c+1)/2)-(c<0||c%2),r=new a(n=l==1/0?"5e"+c:(n=l.toExponential()).slice(0,n.indexOf("e")+1)+c)):r=new a(l.toString()),t=(c=a.precision)+3;;)if(r=(s=r).plus(F(o,s,t+2,1)).times(.5),S(s.d).slice(0,t)===(n=S(r.d)).slice(0,t)){if("9999"!=(n=n.slice(t-3,t+1))&&(i||"4999"!=n)){+n&&(+n.slice(1)||"5"!=n.charAt(0))||(B(r,c+1,1),e=!r.times(r).eq(o));break}if(!i&&(B(s,c+1,0),s.times(s).eq(o))){r=s;break}t+=4,i=1}return f=!0,B(r,c,a.rounding,e)},O.tangent=O.tan=function(){var e,n,t=this,r=t.constructor;return t.isFinite()?t.isZero()?new r(t):(e=r.precision,n=r.rounding,r.precision=e+10,r.rounding=1,(t=t.sin()).s=1,t=F(t,new r(1).minus(t.times(t)).sqrt(),e+10,0),r.precision=e,r.rounding=n,B(2==i||4==i?t.neg():t,e,n,!0)):new r(NaN)},O.times=O.mul=function(e){var n,t,r,i,s,o,u,c,l,a=this,d=a.constructor,h=a.d,p=(e=new d(e)).d;if(e.s*=a.s,!(h&&h[0]&&p&&p[0]))return new d(!e.s||h&&!h[0]&&!p||p&&!p[0]&&!h?NaN:h&&p?0*e.s:e.s/0);for(t=w(a.e/7)+w(e.e/7),(c=h.length)<(l=p.length)&&(s=h,h=p,p=s,o=c,c=l,l=o),s=[],r=o=c+l;r--;)s.push(0);for(r=l;--r>=0;){for(n=0,i=c+r;i>r;)u=s[i]+p[r]*h[i-r-1]+n,s[i--]=u%E|0,n=u/E|0;s[i]=(s[i]+n)%E|0}for(;!s[--o];)s.pop();return n?++t:s.shift(),e.d=s,e.e=L(s,t),f?B(e,d.precision,d.rounding):e},O.toBinary=function(e,n){return K(this,2,e,n)},O.toDecimalPlaces=O.toDP=function(e,n){var t=this,r=t.constructor;return t=new r(t),void 0===e?t:(k(e,0,o),void 0===n?n=r.rounding:k(n,0,8),B(t,e+t.e+1,n))},O.toExponential=function(e,n){var t,r=this,i=r.constructor;return void 0===e?t=P(r,!0):(k(e,0,o),void 0===n?n=i.rounding:k(n,0,8),t=P(r=B(new i(r),e+1,n),!0,e+1)),r.isNeg()&&!r.isZero()?"-"+t:t},O.toFixed=function(e,n){var t,r,i=this,s=i.constructor;return void 0===e?t=P(i):(k(e,0,o),void 0===n?n=s.rounding:k(n,0,8),t=P(r=B(new s(i),e+i.e+1,n),!1,e+r.e+1)),i.isNeg()&&!i.isZero()?"-"+t:t},O.toFraction=function(e){var n,t,r,i,s,o,u,c,l,a,d,p,g=this,m=g.d,w=g.constructor;if(!m)return new w(g);if(l=t=new w(1),r=c=new w(0),o=(s=(n=new w(r)).e=D(m)-g.e-1)%7,n.d[0]=v(10,o<0?7+o:o),null==e)e=s>0?n:l;else{if(!(u=new w(e)).isInt()||u.lt(l))throw Error(h+u);e=u.gt(n)?s>0?n:l:u}for(f=!1,u=new w(S(m)),a=w.precision,w.precision=s=7*m.length*2;d=F(u,n,0,1,1),1!=(i=t.plus(d.times(r))).cmp(e);)t=r,r=i,i=l,l=c.plus(d.times(i)),c=i,i=n,n=u.minus(d.times(i)),u=i;return i=F(e.minus(t),r,0,1,1),c=c.plus(i.times(l)),t=t.plus(i.times(r)),c.s=l.s=g.s,p=F(l,r,s,1).minus(g).abs().cmp(F(c,t,s,1).minus(g).abs())<1?[l,r]:[c,t],w.precision=a,f=!0,p},O.toHexadecimal=O.toHex=function(e,n){return K(this,16,e,n)},O.toNearest=function(e,n){var t=this,r=t.constructor;if(t=new r(t),null==e){if(!t.d)return t;e=new r(1),n=r.rounding}else{if(e=new r(e),void 0===n?n=r.rounding:k(n,0,8),!t.d)return e.s?t:e;if(!e.d)return e.s&&(e.s=t.s),e}return e.d[0]?(f=!1,t=F(t,e,0,n,1).times(e),f=!0,B(t)):(e.s=t.s,t=e),t},O.toNumber=function(){return+this},O.toOctal=function(e,n){return K(this,8,e,n)},O.toPower=O.pow=function(e){var n,t,r,i,s,o,u=this,c=u.constructor,l=+(e=new c(e));if(!(u.d&&e.d&&u.d[0]&&e.d[0]))return new c(v(+u,l));if((u=new c(u)).eq(1))return u;if(r=c.precision,s=c.rounding,e.eq(1))return B(u,r,s);if((n=w(e.e/7))>=e.d.length-1&&(t=l<0?-l:l)<=9007199254740991)return i=Z(c,u,t,r),e.s<0?new c(1).div(i):B(i,r,s);if((o=u.s)<0){if(n<e.d.length-1)return new c(NaN);if(0==(1&e.d[n])&&(o=1),0==u.e&&1==u.d[0]&&1==u.d.length)return u.s=o,u}return(n=0!=(t=v(+u,l))&&isFinite(t)?new c(t+"").e:w(l*(Math.log("0."+S(u.d))/Math.LN10+u.e+1)))>c.maxE+1||n<c.minE-1?new c(n>0?o/0:0):(f=!1,c.rounding=u.s=1,t=Math.min(12,(n+"").length),(i=I(e.times(H(u,r+t)),r)).d&&M((i=B(i,r+5,1)).d,r,s)&&(n=r+10,+S((i=B(I(e.times(H(u,n+t)),n),n+5,1)).d).slice(r+1,r+15)+1==1e14&&(i=B(i,r+1,0))),i.s=o,f=!0,c.rounding=s,B(i,r,s))},O.toPrecision=function(e,n){var t,r=this,i=r.constructor;return void 0===e?t=P(r,r.e<=i.toExpNeg||r.e>=i.toExpPos):(k(e,1,o),void 0===n?n=i.rounding:k(n,0,8),t=P(r=B(new i(r),e,n),e<=r.e||r.e<=i.toExpNeg,e)),r.isNeg()&&!r.isZero()?"-"+t:t},O.toSignificantDigits=O.toSD=function(e,n){var t=this.constructor;return void 0===e?(e=t.precision,n=t.rounding):(k(e,1,o),void 0===n?n=t.rounding:k(n,0,8)),B(new t(this),e,n)},O.toString=function(){var e=this,n=e.constructor,t=P(e,e.e<=n.toExpNeg||e.e>=n.toExpPos);return e.isNeg()&&!e.isZero()?"-"+t:t},O.truncated=O.trunc=function(){return B(new this.constructor(this),this.e+1,1)},O.valueOf=O.toJSON=function(){var e=this,n=e.constructor,t=P(e,e.e<=n.toExpNeg||e.e>=n.toExpPos);return e.isNeg()?"-"+t:t};var F=function(){function e(e,n,t){var r,i=0,s=e.length;for(e=e.slice();s--;)r=e[s]*n+i,e[s]=r%t|0,i=r/t|0;return i&&e.unshift(i),e}function n(e,n,t,r){var i,s;if(t!=r)s=t>r?1:-1;else for(i=s=0;i<t;i++)if(e[i]!=n[i]){s=e[i]>n[i]?1:-1;break}return s}function r(e,n,t,r){for(var i=0;t--;)e[t]-=i,i=e[t]<n[t]?1:0,e[t]=i*r+e[t]-n[t];for(;!e[0]&&e.length>1;)e.shift()}return function(i,s,o,u,c,l){var a,f,d,h,p,g,m,v,b,N,x,y,_,$,O,S,k,M,q,F,P=i.constructor,L=i.s==s.s?1:-1,A=i.d,U=s.d;if(!(A&&A[0]&&U&&U[0]))return new P(i.s&&s.s&&(A?!U||A[0]!=U[0]:U)?A&&0==A[0]||!U?0*L:L/0:NaN);for(l?(p=1,f=i.e-s.e):(l=E,p=7,f=w(i.e/p)-w(s.e/p)),q=U.length,k=A.length,N=(b=new P(L)).d=[],d=0;U[d]==(A[d]||0);d++);if(U[d]>(A[d]||0)&&f--,null==o?($=o=P.precision,u=P.rounding):$=c?o+(i.e-s.e)+1:o,$<0)N.push(1),g=!0;else{if($=$/p+2|0,d=0,1==q){for(h=0,U=U[0],$++;(d<k||h)&&$--;d++)O=h*l+(A[d]||0),N[d]=O/U|0,h=O%U|0;g=h||d<k}else{for((h=l/(U[0]+1)|0)>1&&(U=e(U,h,l),A=e(A,h,l),q=U.length,k=A.length),S=q,y=(x=A.slice(0,q)).length;y<q;)x[y++]=0;(F=U.slice()).unshift(0),M=U[0],U[1]>=l/2&&++M;do{h=0,(a=n(U,x,q,y))<0?(_=x[0],q!=y&&(_=_*l+(x[1]||0)),(h=_/M|0)>1?(h>=l&&(h=l-1),1==(a=n(m=e(U,h,l),x,v=m.length,y=x.length))&&(h--,r(m,q<v?F:U,v,l))):(0==h&&(a=h=1),m=U.slice()),(v=m.length)<y&&m.unshift(0),r(x,m,y,l),-1==a&&(a=n(U,x,q,y=x.length))<1&&(h++,r(x,q<y?F:U,y,l)),y=x.length):0===a&&(h++,x=[0]),N[d++]=h,a&&x[0]?x[y++]=A[S]||0:(x=[A[S]],y=1)}while((S++<k||void 0!==x[0])&&$--);g=void 0!==x[0]}N[0]||N.shift()}if(1==p)b.e=f,t=g;else{for(d=1,h=N[0];h>=10;h/=10)d++;b.e=d+f*p-1,B(b,c?o+b.e+1:o,u,g)}return b}}();function B(e,n,t,r){var i,s,o,u,c,l,a,d,h,p=e.constructor;e:if(null!=n){if(!(d=e.d))return e;for(i=1,u=d[0];u>=10;u/=10)i++;if((s=n-i)<0)s+=7,o=n,c=(a=d[h=0])/v(10,i-o-1)%10|0;else if((h=Math.ceil((s+1)/7))>=(u=d.length)){if(!r)break e;for(;u++<=h;)d.push(0);a=c=0,i=1,o=(s%=7)-7+1}else{for(a=u=d[h],i=1;u>=10;u/=10)i++;c=(o=(s%=7)-7+i)<0?0:a/v(10,i-o-1)%10|0}if(r=r||n<0||void 0!==d[h+1]||(o<0?a:a%v(10,i-o-1)),l=t<4?(c||r)&&(0==t||t==(e.s<0?3:2)):c>5||5==c&&(4==t||r||6==t&&(s>0?o>0?a/v(10,i-o):0:d[h-1])%10&1||t==(e.s<0?8:7)),n<1||!d[0])return d.length=0,l?(n-=e.e+1,d[0]=v(10,(7-n%7)%7),e.e=-n||0):d[0]=e.e=0,e;if(0==s?(d.length=h,u=1,h--):(d.length=h+1,u=v(10,7-s),d[h]=o>0?(a/v(10,i-o)%v(10,o)|0)*u:0),l)for(;;){if(0==h){for(s=1,o=d[0];o>=10;o/=10)s++;for(o=d[0]+=u,u=1;o>=10;o/=10)u++;s!=u&&(e.e++,d[0]==E&&(d[0]=1));break}if(d[h]+=u,d[h]!=E)break;d[h--]=0,u=1}for(s=d.length;0===d[--s];)d.pop()}return f&&(e.e>p.maxE?(e.d=null,e.e=NaN):e.e<p.minE&&(e.e=0,e.d=[0])),e}function P(e,n,t){if(!e.isFinite())return Y(e);var r,i=e.e,s=S(e.d),o=s.length;return n?(t&&(r=t-o)>0?s=s.charAt(0)+"."+s.slice(1)+T(r):o>1&&(s=s.charAt(0)+"."+s.slice(1)),s=s+(e.e<0?"e":"e+")+e.e):i<0?(s="0."+T(-i-1)+s,t&&(r=t-o)>0&&(s+=T(r))):i>=o?(s+=T(i+1-o),t&&(r=t-i-1)>0&&(s=s+"."+T(r))):((r=i+1)<o&&(s=s.slice(0,r)+"."+s.slice(r)),t&&(r=t-o)>0&&(i+1===o&&(s+="."),s+=T(r))),s}function L(e,n){var t=e[0];for(n*=7;t>=10;t/=10)n++;return n}function A(e,n,t){if(n>_)throw f=!0,t&&(e.precision=t),Error(p);return B(new e(c),n,1,!0)}function U(e,n,t){if(n>$)throw Error(p);return B(new e(l),n,t,!0)}function D(e){var n=e.length-1,t=7*n+1;if(n=e[n]){for(;n%10==0;n/=10)t--;for(n=e[0];n>=10;n/=10)t++}return t}function T(e){for(var n="";e--;)n+="0";return n}function Z(e,n,t,r){var i,s=new e(1),o=Math.ceil(r/7+4);for(f=!1;;){if(t%2&&Q((s=s.times(n)).d,o)&&(i=!0),0===(t=w(t/2))){t=s.d.length-1,i&&0===s.d[t]&&++s.d[t];break}Q((n=n.times(n)).d,o)}return f=!0,s}function R(e){return 1&e.d[e.d.length-1]}function j(e,n,t){for(var r,i=new e(n[0]),s=0;++s<n.length;){if(!(r=new e(n[s])).s){i=r;break}i[t](r)&&(i=r)}return i}function I(e,n){var t,r,i,s,o,u,c,l=0,a=0,d=0,h=e.constructor,p=h.rounding,g=h.precision;if(!e.d||!e.d[0]||e.e>17)return new h(e.d?e.d[0]?e.s<0?0:1/0:1:e.s?e.s<0?0:e:NaN);for(null==n?(f=!1,c=g):c=n,u=new h(.03125);e.e>-2;)e=e.times(u),d+=5;for(c+=r=Math.log(v(2,d))/Math.LN10*2+5|0,t=s=o=new h(1),h.precision=c;;){if(s=B(s.times(e),c,1),t=t.times(++a),S((u=o.plus(F(s,t,c,1))).d).slice(0,c)===S(o.d).slice(0,c)){for(i=d;i--;)o=B(o.times(o),c,1);if(null!=n)return h.precision=g,o;if(!(l<3&&M(o.d,c-r,p,l)))return B(o,h.precision=g,p,f=!0);h.precision=c+=10,t=s=u=new h(1),a=0,l++}o=u}}function H(e,n){var t,r,i,s,o,u,c,l,a,d,h,p=1,g=e,m=g.d,w=g.constructor,v=w.rounding,b=w.precision;if(g.s<0||!m||!m[0]||!g.e&&1==m[0]&&1==m.length)return new w(m&&!m[0]?-1/0:1!=g.s?NaN:m?0:g);if(null==n?(f=!1,a=b):a=n,w.precision=a+=10,r=(t=S(m)).charAt(0),!(Math.abs(s=g.e)<15e14))return l=A(w,a+2,b).times(s+""),g=H(new w(r+"."+t.slice(1)),a-10).plus(l),w.precision=b,null==n?B(g,b,v,f=!0):g;for(;r<7&&1!=r||1==r&&t.charAt(1)>3;)r=(t=S((g=g.times(e)).d)).charAt(0),p++;for(s=g.e,r>1?(g=new w("0."+t),s++):g=new w(r+"."+t.slice(1)),d=g,c=o=g=F(g.minus(1),g.plus(1),a,1),h=B(g.times(g),a,1),i=3;;){if(o=B(o.times(h),a,1),S((l=c.plus(F(o,new w(i),a,1))).d).slice(0,a)===S(c.d).slice(0,a)){if(c=c.times(2),0!==s&&(c=c.plus(A(w,a+2,b).times(s+""))),c=F(c,new w(p),a,1),null!=n)return w.precision=b,c;if(!M(c.d,a-10,v,u))return B(c,w.precision=b,v,f=!0);w.precision=a+=10,l=o=g=F(d.minus(1),d.plus(1),a,1),h=B(g.times(g),a,1),i=u=1}c=l,i+=2}}function Y(e){return String(e.s*e.s/0)}function V(e,n){var t,r,i;for((t=n.indexOf("."))>-1&&(n=n.replace(".","")),(r=n.search(/e/i))>0?(t<0&&(t=r),t+=+n.slice(r+1),n=n.substring(0,r)):t<0&&(t=n.length),r=0;48===n.charCodeAt(r);r++);for(i=n.length;48===n.charCodeAt(i-1);--i);if(n=n.slice(r,i)){if(i-=r,e.e=t=t-r-1,e.d=[],r=(t+1)%7,t<0&&(r+=7),r<i){for(r&&e.d.push(+n.slice(0,r)),i-=7;r<i;)e.d.push(+n.slice(r,r+=7));r=7-(n=n.slice(r)).length}else r-=i;for(;r--;)n+="0";e.d.push(+n),f&&(e.e>e.constructor.maxE?(e.d=null,e.e=NaN):e.e<e.constructor.minE&&(e.e=0,e.d=[0]))}else e.e=0,e.d=[0];return e}function J(e,t){var r,i,s,o,u,c,l,a,d;if(t.indexOf("_")>-1){if(t=t.replace(/(\d)_(?=\d)/g,"$1"),y.test(t))return V(e,t)}else if("Infinity"===t||"NaN"===t)return+t||(e.s=NaN),e.e=NaN,e.d=null,e;if(N.test(t))r=16,t=t.toLowerCase();else if(b.test(t))r=2;else{if(!x.test(t))throw Error(h+t);r=8}for((o=t.search(/p/i))>0?(l=+t.slice(o+1),t=t.substring(2,o)):t=t.slice(2),u=(o=t.indexOf("."))>=0,i=e.constructor,u&&(o=(c=(t=t.replace(".","")).length)-o,s=Z(i,new i(r),o,2*o)),o=d=(a=q(t,r,E)).length-1;0===a[o];--o)a.pop();return o<0?new i(0*e.s):(e.e=L(a,d),e.d=a,f=!1,u&&(e=F(e,s,4*c)),l&&(e=e.times(Math.abs(l)<54?v(2,l):n.pow(2,l))),f=!0,e)}function W(e,n,t,r,i){var s,o,u,c,l=e.precision,a=Math.ceil(l/7);for(f=!1,c=t.times(t),u=new e(r);;){if(o=F(u.times(c),new e(n++*n++),l,1),u=i?r.plus(o):r.minus(o),r=F(o.times(c),new e(n++*n++),l,1),void 0!==(o=u.plus(r)).d[a]){for(s=a;o.d[s]===u.d[s]&&s--;);if(-1==s)break}s=u,u=r,r=o,o=s}return f=!0,o.d.length=a+1,o}function z(e,n){for(var t=e;--n;)t*=e;return t}function G(e,n){var t,r=n.s<0,s=U(e,e.precision,1),o=s.times(.5);if((n=n.abs()).lte(o))return i=r?4:1,n;if((t=n.divToInt(s)).isZero())i=r?3:2;else{if((n=n.minus(t.times(s))).lte(o))return i=R(t)?r?2:3:r?4:1,n;i=R(t)?r?1:4:r?3:2}return n.minus(s).abs()}function K(e,n,r,i){var s,c,l,a,f,d,h,p,g,m=e.constructor,w=void 0!==r;if(w?(k(r,1,o),void 0===i?i=m.rounding:k(i,0,8)):(r=m.precision,i=m.rounding),e.isFinite()){for(w?(s=2,16==n?r=4*r-3:8==n&&(r=3*r-2)):s=n,(l=(h=P(e)).indexOf("."))>=0&&(h=h.replace(".",""),(g=new m(1)).e=h.length-l,g.d=q(P(g),10,s),g.e=g.d.length),c=f=(p=q(h,10,s)).length;0==p[--f];)p.pop();if(p[0]){if(l<0?c--:((e=new m(e)).d=p,e.e=c,p=(e=F(e,g,r,i,0,s)).d,c=e.e,d=t),l=p[r],a=s/2,d=d||void 0!==p[r+1],d=i<4?(void 0!==l||d)&&(0===i||i===(e.s<0?3:2)):l>a||l===a&&(4===i||d||6===i&&1&p[r-1]||i===(e.s<0?8:7)),p.length=r,d)for(;++p[--r]>s-1;)p[r]=0,r||(++c,p.unshift(1));for(f=p.length;!p[f-1];--f);for(l=0,h="";l<f;l++)h+=u.charAt(p[l]);if(w){if(f>1)if(16==n||8==n){for(l=16==n?4:3,--f;f%l;f++)h+="0";for(f=(p=q(h,s,n)).length;!p[f-1];--f);for(l=1,h="1.";l<f;l++)h+=u.charAt(p[l])}else h=h.charAt(0)+"."+h.slice(1);h=h+(c<0?"p":"p+")+c}else if(c<0){for(;++c;)h="0"+h;h="0."+h}else if(++c>f)for(c-=f;c--;)h+="0";else c<f&&(h=h.slice(0,c)+"."+h.slice(c))}else h=w?"0p+0":"0";h=(16==n?"0x":2==n?"0b":8==n?"0o":"")+h}else h=Y(e);return e.s<0?"-"+h:h}function Q(e,n){if(e.length>n)return e.length=n,!0}function X(e){return new this(e).abs()}function ee(e){return new this(e).acos()}function ne(e){return new this(e).acosh()}function te(e,n){return new this(e).plus(n)}function re(e){return new this(e).asin()}function ie(e){return new this(e).asinh()}function se(e){return new this(e).atan()}function oe(e){return new this(e).atanh()}function ue(e,n){e=new this(e),n=new this(n);var t,r=this.precision,i=this.rounding,s=r+4;return e.s&&n.s?e.d||n.d?!n.d||e.isZero()?(t=n.s<0?U(this,r,i):new this(0)).s=e.s:!e.d||n.isZero()?(t=U(this,s,1).times(.5)).s=e.s:n.s<0?(this.precision=s,this.rounding=1,t=this.atan(F(e,n,s,1)),n=U(this,s,1),this.precision=r,this.rounding=i,t=e.s<0?t.minus(n):t.plus(n)):t=this.atan(F(e,n,s,1)):(t=U(this,s,1).times(n.s>0?.25:.75)).s=e.s:t=new this(NaN),t}function ce(e){return new this(e).cbrt()}function le(e){return B(e=new this(e),e.e+1,2)}function ae(e,n,t){return new this(e).clamp(n,t)}function fe(e){if(!e||"object"!=typeof e)throw Error(d+"Object expected");var n,t,r,i=!0===e.defaults,u=["precision",1,o,"rounding",0,8,"toExpNeg",-s,0,"toExpPos",0,s,"maxE",0,s,"minE",-s,0,"modulo",0,9];for(n=0;n<u.length;n+=3)if(t=u[n],i&&(this[t]=a[t]),void 0!==(r=e[t])){if(!(w(r)===r&&r>=u[n+1]&&r<=u[n+2]))throw Error(h+t+": "+r);this[t]=r}if(t="crypto",i&&(this[t]=a[t]),void 0!==(r=e[t])){if(!0!==r&&!1!==r&&0!==r&&1!==r)throw Error(h+t+": "+r);if(r){if("undefined"==typeof crypto||!crypto||!crypto.getRandomValues&&!crypto.randomBytes)throw Error(g);this[t]=!0}else this[t]=!1}return this}function de(e){return new this(e).cos()}function he(e){return new this(e).cosh()}function pe(e,n){return new this(e).div(n)}function ge(e){return new this(e).exp()}function me(e){return B(e=new this(e),e.e+1,3)}function we(){var e,n,t=new this(0);for(f=!1,e=0;e<arguments.length;)if((n=new this(arguments[e++])).d)t.d&&(t=t.plus(n.times(n)));else{if(n.s)return f=!0,new this(1/0);t=n}return f=!0,t.sqrt()}function ve(e){return e instanceof n||e&&e.toStringTag===m||!1}function be(e){return new this(e).ln()}function Ne(e,n){return new this(e).log(n)}function xe(e){return new this(e).log(2)}function ye(e){return new this(e).log(10)}function Ee(){return j(this,arguments,"lt")}function _e(){return j(this,arguments,"gt")}function $e(e,n){return new this(e).mod(n)}function Oe(e,n){return new this(e).mul(n)}function Se(e,n){return new this(e).pow(n)}function ke(e){var n,t,r,i,s=0,u=new this(1),c=[];if(void 0===e?e=this.precision:k(e,1,o),r=Math.ceil(e/7),this.crypto)if(crypto.getRandomValues)for(n=crypto.getRandomValues(new Uint32Array(r));s<r;)(i=n[s])>=429e7?n[s]=crypto.getRandomValues(new Uint32Array(1))[0]:c[s++]=i%1e7;else{if(!crypto.randomBytes)throw Error(g);for(n=crypto.randomBytes(r*=4);s<r;)(i=n[s]+(n[s+1]<<8)+(n[s+2]<<16)+((127&n[s+3])<<24))>=214e7?crypto.randomBytes(4).copy(n,s):(c.push(i%1e7),s+=4);s=r/4}else for(;s<r;)c[s++]=1e7*Math.random()|0;for(e%=7,(r=c[--s])&&e&&(i=v(10,7-e),c[s]=(r/i|0)*i);0===c[s];s--)c.pop();if(s<0)t=0,c=[0];else{for(t=-1;0===c[0];t-=7)c.shift();for(r=1,i=c[0];i>=10;i/=10)r++;r<7&&(t-=7-r)}return u.e=t,u.d=c,u}function Me(e){return B(e=new this(e),e.e+1,this.rounding)}function qe(e){return(e=new this(e)).d?e.d[0]?e.s:0*e.s:e.s||NaN}function Fe(e){return new this(e).sin()}function Be(e){return new this(e).sinh()}function Pe(e){return new this(e).sqrt()}function Le(e,n){return new this(e).sub(n)}function Ae(){var e=0,n=arguments,t=new this(n[e]);for(f=!1;t.s&&++e<n.length;)t=t.plus(n[e]);return f=!0,B(t,this.precision,this.rounding)}function Ue(e){return new this(e).tan()}function De(e){return new this(e).tanh()}function Te(e){return B(e=new this(e),e.e+1,1)}n=function e(n){var t,r,i;function s(e){var n,t,r,i=this;if(!(i instanceof s))return new s(e);if(i.constructor=s,ve(e))return i.s=e.s,void(f?!e.d||e.e>s.maxE?(i.e=NaN,i.d=null):e.e<s.minE?(i.e=0,i.d=[0]):(i.e=e.e,i.d=e.d.slice()):(i.e=e.e,i.d=e.d?e.d.slice():e.d));if("number"==(r=typeof e)){if(0===e)return i.s=1/e<0?-1:1,i.e=0,void(i.d=[0]);if(e<0?(e=-e,i.s=-1):i.s=1,e===~~e&&e<1e7){for(n=0,t=e;t>=10;t/=10)n++;return void(f?n>s.maxE?(i.e=NaN,i.d=null):n<s.minE?(i.e=0,i.d=[0]):(i.e=n,i.d=[e]):(i.e=n,i.d=[e]))}return 0*e!=0?(e||(i.s=NaN),i.e=NaN,void(i.d=null)):V(i,e.toString())}if("string"!==r)throw Error(h+e);return 45===(t=e.charCodeAt(0))?(e=e.slice(1),i.s=-1):(43===t&&(e=e.slice(1)),i.s=1),y.test(e)?V(i,e):J(i,e)}if(s.prototype=O,s.ROUND_UP=0,s.ROUND_DOWN=1,s.ROUND_CEIL=2,s.ROUND_FLOOR=3,s.ROUND_HALF_UP=4,s.ROUND_HALF_DOWN=5,s.ROUND_HALF_EVEN=6,s.ROUND_HALF_CEIL=7,s.ROUND_HALF_FLOOR=8,s.EUCLID=9,s.config=s.set=fe,s.clone=e,s.isDecimal=ve,s.abs=X,s.acos=ee,s.acosh=ne,s.add=te,s.asin=re,s.asinh=ie,s.atan=se,s.atanh=oe,s.atan2=ue,s.cbrt=ce,s.ceil=le,s.clamp=ae,s.cos=de,s.cosh=he,s.div=pe,s.exp=ge,s.floor=me,s.hypot=we,s.ln=be,s.log=Ne,s.log10=ye,s.log2=xe,s.max=Ee,s.min=_e,s.mod=$e,s.mul=Oe,s.pow=Se,s.random=ke,s.round=Me,s.sign=qe,s.sin=Fe,s.sinh=Be,s.sqrt=Pe,s.sub=Le,s.sum=Ae,s.tan=Ue,s.tanh=De,s.trunc=Te,void 0===n&&(n={}),n&&!0!==n.defaults)for(i=["precision","rounding","toExpNeg","toExpPos","maxE","minE","modulo","crypto"],t=0;t<i.length;)n.hasOwnProperty(r=i[t++])||(n[r]=this[r]);return s.config(n),s}(a),n.prototype.constructor=n,n.default=n.Decimal=n,c=new n(c),l=new n(l),C.exports?("function"==typeof Symbol&&"symbol"==typeof Symbol.iterator&&(O[Symbol.for("nodejs.util.inspect.custom")]=O.toString,O[Symbol.toStringTag]="Decimal"),C.exports=n):(e||(e="undefined"!=typeof self&&self&&self.self==self?self:window),r=e.Decimal,n.noConflict=function(){return e.Decimal=r,n},e.Decimal=n)}(Z);var j=R.exports;const I=e=>n=>({...n,pairs:n.path.map(((t,r)=>{const i=n.path[n.path[r+1]?r+1:0];return e[t]&&e[t].includes(i)?{base:i,quote:t,get id(){return`${this.base}${this.quote}`},side:"BUY"}:e[i]&&e[i].includes(t)?{base:t,quote:i,get id(){return`${this.base}${this.quote}`},side:"SELL"}:null}))}),H=(...e)=>n=>e.reduce(((e,n)=>({...e,pairs:e.pairs.map(n)})),n),Y=e=>({...e,toName:"BUY"===e.side?e.base:e.quote,fromName:"BUY"===e.side?e.quote:e.base}),V=e=>n=>({...n,price:e[n.id]||{BUY:0,SELL:1/0}}),J=e=>{const n=new j(e||0).div(1e6),t=(e,r,i)=>{const s=new j(0===r?1:t(i[r-1],r-1,i).balance),o={get BUY(){const t=s.times(n);return s.minus(t).div(e.price.BUY)},get SELL(){const t=s.times(e.price.SELL),r=t.times(n);return t.minus(r)}};return{...e,balance:o[e.side]}};return t},W=e=>{const n=new j(1),t=e.pairs[e.pairs.length-1].balance;return{...e,finalBalance:t.minus(n),get percent(){return this.finalBalance.div(n.abs()).mul(100)},get isProfitable(){return this.finalBalance>0}}};let z;const G=()=>(z=z||new window.ccxt.binance,z.loadMarkets()).then((e=>Object.values(e).reduce(((e,n,t)=>(0===t&&console.log(n),n.active&&n.spot?(e[n.quote]?e[n.quote].push(n.base):e[n.quote]=[n.base],e):e)),{}))).then((e=>Object.entries(e).reduce(((n,[t,r])=>(n[t]=r.filter((r=>!!n[r]||Object.entries(e).some((([e,n])=>e!==t&&n.includes(r))))),n)),{})));function K(e,n,t){const r=e.slice();return r[18]=n[t],r}function Q(e,n,t){const r=e.slice();return r[21]=n[t],r}function X(e,n,t){const r=e.slice();return r[24]=n[t],r}function ee(e,n,t){const r=e.slice();return r[24]=n[t],r}function ne(e,n,t){const r=e.slice();return r[24]=n[t],r}function te(e){let n,t,i,s,l,g,m,v,b=e[24]+"";return{c(){n=a("label"),t=a("input"),s=d(),l=f(b),g=d(),p(t,"type","checkbox"),t.__value=i=e[24],t.value=t.__value,e[10][0].push(t),p(n,"class","svelte-fwwp1l")},m(r,i){u(r,n,i),o(n,t),t.checked=~e[4].indexOf(t.__value),o(n,s),o(n,l),o(n,g),m||(v=[h(t,"change",e[9]),h(t,"change",e[6])],m=!0)},p(e,n){4&n&&i!==(i=e[24])&&(t.__value=i,t.value=t.__value),16&n&&(t.checked=~e[4].indexOf(t.__value)),4&n&&b!==(b=e[24]+"")&&w(l,b)},d(i){i&&c(n),e[10][0].splice(e[10][0].indexOf(t),1),m=!1,r(v)}}}function re(e){let n,t,i,s,l,g,m,v,b=e[24]+"";return{c(){n=a("label"),t=a("input"),s=d(),l=f(b),g=d(),p(t,"type","checkbox"),t.__value=i=e[24],t.value=t.__value,e[10][0].push(t),p(n,"class","svelte-fwwp1l")},m(r,i){u(r,n,i),o(n,t),t.checked=~e[4].indexOf(t.__value),o(n,s),o(n,l),o(n,g),m||(v=[h(t,"change",e[11]),h(t,"change",e[6])],m=!0)},p(e,n){8&n&&i!==(i=e[24])&&(t.__value=i,t.value=t.__value),16&n&&(t.checked=~e[4].indexOf(t.__value)),8&n&&b!==(b=e[24]+"")&&w(l,b)},d(i){i&&c(n),e[10][0].splice(e[10][0].indexOf(t),1),m=!1,r(v)}}}function ie(e){let n,t,r,i,s=e[24]+"";return{c(){n=a("td"),n.textContent="->",t=d(),r=a("td"),i=f(s),p(n,"class","svelte-fwwp1l"),p(r,"class","svelte-fwwp1l")},m(e,s){u(e,n,s),u(e,t,s),u(e,r,s),o(r,i)},p(e,n){2&n&&s!==(s=e[24]+"")&&w(i,s)},d(e){e&&c(n),e&&c(t),e&&c(r)}}}function se(e){let n,t,r,i,s,l,h,g=e[21].balance.toFixed(4)+"",m=e[21].toName+"";return{c(){n=a("td"),t=d(),r=a("td"),i=f(g),s=d(),l=a("td"),h=f(m),b(n,"width","25px"),p(n,"class","svelte-fwwp1l"),p(r,"class","number-cell svelte-fwwp1l"),p(l,"class","svelte-fwwp1l")},m(e,c){u(e,n,c),u(e,t,c),u(e,r,c),o(r,i),u(e,s,c),u(e,l,c),o(l,h)},p(e,n){2&n&&g!==(g=e[21].balance.toFixed(4)+"")&&w(i,g),2&n&&m!==(m=e[21].toName+"")&&w(h,m)},d(e){e&&c(n),e&&c(t),e&&c(r),e&&c(s),e&&c(l)}}}function oe(e,n){let t,r,i,s,h,g,m,v,N,x,y,E,_,$,O,S,k,M,q,F=n[18].finalBalance.toFixed(4)+"",B=n[18].startingCurrency+"",P=n[18].percent.toFixed(4)+"",L=n[18].path,A=[];for(let e=0;e<L.length;e+=1)A[e]=ie(X(n,L,e));let U=n[18].pairs,D=[];for(let e=0;e<U.length;e+=1)D[e]=se(Q(n,U,e));return{key:e,first:null,c(){t=a("tr");for(let e=0;e<A.length;e+=1)A[e].c();r=d();for(let e=0;e<D.length;e+=1)D[e].c();i=d(),s=a("td"),h=d(),g=a("td"),m=f(F),v=d(),N=a("td"),x=f(B),y=d(),E=a("td"),_=d(),$=a("td"),O=f(P),S=d(),k=a("td"),M=f("%"),q=d(),b(s,"width","25px"),p(s,"class","svelte-fwwp1l"),b(g,"color",n[18].isProfitable?"green":"red"),p(g,"class","number-cell svelte-fwwp1l"),b(N,"color",n[18].isProfitable?"green":"red"),p(N,"class","svelte-fwwp1l"),b(E,"width","25px"),p(E,"class","svelte-fwwp1l"),b($,"color",n[18].isProfitable?"green":"red"),p($,"class","number-cell svelte-fwwp1l"),b(k,"color",n[18].isProfitable?"green":"red"),p(k,"class","svelte-fwwp1l"),p(t,"class","svelte-fwwp1l"),this.first=t},m(e,n){u(e,t,n);for(let e=0;e<A.length;e+=1)A[e].m(t,null);o(t,r);for(let e=0;e<D.length;e+=1)D[e].m(t,null);o(t,i),o(t,s),o(t,h),o(t,g),o(g,m),o(t,v),o(t,N),o(N,x),o(t,y),o(t,E),o(t,_),o(t,$),o($,O),o(t,S),o(t,k),o(k,M),o(t,q)},p(e,s){if(n=e,2&s){let e;for(L=n[18].path,e=0;e<L.length;e+=1){const i=X(n,L,e);A[e]?A[e].p(i,s):(A[e]=ie(i),A[e].c(),A[e].m(t,r))}for(;e<A.length;e+=1)A[e].d(1);A.length=L.length}if(2&s){let e;for(U=n[18].pairs,e=0;e<U.length;e+=1){const r=Q(n,U,e);D[e]?D[e].p(r,s):(D[e]=se(r),D[e].c(),D[e].m(t,i))}for(;e<D.length;e+=1)D[e].d(1);D.length=U.length}2&s&&F!==(F=n[18].finalBalance.toFixed(4)+"")&&w(m,F),2&s&&b(g,"color",n[18].isProfitable?"green":"red"),2&s&&B!==(B=n[18].startingCurrency+"")&&w(x,B),2&s&&b(N,"color",n[18].isProfitable?"green":"red"),2&s&&P!==(P=n[18].percent.toFixed(4)+"")&&w(O,P),2&s&&b($,"color",n[18].isProfitable?"green":"red"),2&s&&b(k,"color",n[18].isProfitable?"green":"red")},d(e){e&&c(t),l(A,e),l(D,e)}}}function ue(n){let t,i,s,g,w,N,x,y,E,_,$,O,S,k,M,q,F,B,P,L,D,T,C,Z,R,j,I,H,Y,V,J=[],W=new Map,z=n[2],G=[];for(let e=0;e<z.length;e+=1)G[e]=te(ne(n,z,e));let Q=n[3],X=[];for(let e=0;e<Q.length;e+=1)X[e]=re(ee(n,Q,e));let ie=n[1];const se=e=>e[18].path.join();for(let e=0;e<ie.length;e+=1){let t=K(n,ie,e),r=se(t);W.set(r,J[e]=oe(r,t))}return{c(){t=a("div"),i=a("h1"),s=f("Binance "),g=a("span"),w=f("▲"),N=f(" Triangular arbitrage monitor"),x=d(),y=a("div"),E=a("form"),_=a("table"),$=a("tr"),O=a("td"),O.textContent="FEES",S=d(),k=a("td"),M=a("input"),q=d(),F=a("div"),B=d(),P=a("div");for(let e=0;e<G.length;e+=1)G[e].c();L=d(),D=a("div"),T=d(),C=a("div");for(let e=0;e<X.length;e+=1)X[e].c();Z=d(),R=a("div"),j=d(),I=a("div"),H=a("table");for(let e=0;e<J.length;e+=1)J[e].c();b(g,"color",0===n[5]?"red":1===n[5]?"orange":"green"),p(t,"class","center-box svelte-fwwp1l"),p(M,"type","number"),p(y,"class","center-box svelte-fwwp1l"),b(F,"height","4rem"),p(P,"class","select svelte-fwwp1l"),b(D,"height","1rem"),p(C,"class","select svelte-fwwp1l"),b(R,"height","4rem"),p(H,"id","result"),p(H,"class","svelte-fwwp1l"),p(I,"class","center-box svelte-fwwp1l")},m(e,r){u(e,t,r),o(t,i),o(i,s),o(i,g),o(g,w),o(i,N),u(e,x,r),u(e,y,r),o(y,E),o(E,_),o(_,$),o($,O),o($,S),o($,k),o(k,M),v(M,n[0]),u(e,q,r),u(e,F,r),u(e,B,r),u(e,P,r);for(let e=0;e<G.length;e+=1)G[e].m(P,null);u(e,L,r),u(e,D,r),u(e,T,r),u(e,C,r);for(let e=0;e<X.length;e+=1)X[e].m(C,null);u(e,Z,r),u(e,R,r),u(e,j,r),u(e,I,r),o(I,H);for(let e=0;e<J.length;e+=1)J[e].m(H,null);Y||(V=[h(M,"input",n[8]),h(M,"keyup",n[7])],Y=!0)},p(e,[n]){if(32&n&&b(g,"color",0===e[5]?"red":1===e[5]?"orange":"green"),1&n&&m(M.value)!==e[0]&&v(M,e[0]),84&n){let t;for(z=e[2],t=0;t<z.length;t+=1){const r=ne(e,z,t);G[t]?G[t].p(r,n):(G[t]=te(r),G[t].c(),G[t].m(P,null))}for(;t<G.length;t+=1)G[t].d(1);G.length=z.length}if(88&n){let t;for(Q=e[3],t=0;t<Q.length;t+=1){const r=ee(e,Q,t);X[t]?X[t].p(r,n):(X[t]=re(r),X[t].c(),X[t].m(C,null))}for(;t<X.length;t+=1)X[t].d(1);X.length=Q.length}2&n&&(ie=e[1],J=function(e,n,t,r,i,s,o,u,c,l,a,f){let d=e.length,h=s.length,p=d;const g={};for(;p--;)g[e[p].key]=p;const m=[],w=new Map,v=new Map;for(p=h;p--;){const e=f(i,s,p),u=t(e);let c=o.get(u);c?r&&c.p(e,n):(c=l(u,e),c.c()),w.set(u,m[p]=c),u in g&&v.set(u,Math.abs(p-g[u]))}const b=new Set,N=new Set;function x(e){A(e,1),e.m(u,a),o.set(e.key,e),a=e.first,h--}for(;d&&h;){const n=m[h-1],t=e[d-1],r=n.key,i=t.key;n===t?(a=n.first,d--,h--):w.has(i)?!o.has(r)||b.has(r)?x(n):N.has(i)?d--:v.get(r)>v.get(i)?(N.add(r),x(n)):(b.add(i),d--):(c(t,o),d--)}for(;d--;){const n=e[d];w.has(n.key)||c(n,o)}for(;h;)x(m[h-1]);return m}(J,n,se,1,e,ie,W,H,U,oe,null,K))},i:e,o:e,d(e){e&&c(t),e&&c(x),e&&c(y),e&&c(q),e&&c(F),e&&c(B),e&&c(P),l(G,e),e&&c(L),e&&c(D),e&&c(T),e&&c(C),l(X,e),e&&c(Z),e&&c(R),e&&c(j),e&&c(I);for(let e=0;e<J.length;e+=1)J[e].d();Y=!1,r(V)}}}function ce(e,n,t){let r,i=1e3,s={},o=[],u={},c=[],l=[],a=[],f=[],d=0;const h=()=>{r=new WebSocket("wss://stream.binance.com/stream"),r.onopen=()=>{t(5,d=2),f.length>0&&r.send(JSON.stringify({method:"SUBSCRIBE",params:f,id:1}))},r.onmessage=e=>{const n=JSON.parse(e.data);if(null==n?void 0:n.data){const{s:e,a:t,b:r}=n.data;e&&t&&r&&(s[e]={BUY:t,SELL:r})}p()},r.onclose=()=>{t(5,d=0),setTimeout((()=>{t(5,d=1),h()}),1e3)}};y((()=>{G().then((e=>{u=e;const n=[],r=[];Object.entries(e).forEach((([e,t])=>{n.push(e),r.push(...t)})),t(2,c=[...new Set(n)]),t(3,l=[...new Set(r)].filter((n=>!Object.keys(e).includes(n))))})),h()}));const p=()=>{t(1,o=o.map(H(V(s),J(i))).map(W).sort(((e,n)=>n.percent-e.percent)))},w=[[]];return[i,o,c,l,a,d,()=>{const e=(n=a,n.map((e=>n.map((t=>n.map((n=>e!==t&&e!==n&&t!==n?{path:[e,t,n],startingCurrency:e}:null)))))).flat(2).filter(Boolean).reduce(((e,n)=>{const{path:t}=n,r=e.map((e=>e.path.join()));return r.includes(t.join())||r.includes([t[1],t[2],t[0]].join())||r.includes([t[2],t[0],t[1]].join())||e.push(n),e}),[])).map(I(u)).filter((e=>e.pairs.every(Boolean)));var n;const c=e.flatMap((e=>e.pairs.map((e=>`${e.id.toLowerCase()}@bookTicker`))));c.forEach((e=>{f.includes(e)||(r.send(JSON.stringify({method:"SUBSCRIBE",params:[e],id:1})),f=[...f,e])})),f.forEach((e=>{c.includes(e)||(r.send(JSON.stringify({method:"UNSUBSCRIBE",params:[e],id:312})),f=f.filter((n=>n!==e)))})),t(1,o=e.map(H(Y,V(s),J(i))).map(W).sort(((e,n)=>n.percent-e.percent)))},()=>{t(1,o=o.map(H(J(i))).map(W).sort(((e,n)=>n.percent-e.percent)))},function(){i=m(this.value),t(0,i)},function(){a=g(w[0],this.__value,this.checked),t(4,a)},w,function(){a=g(w[0],this.__value,this.checked),t(4,a)}]}return new class extends class{$destroy(){!function(e,n){const t=e.$$;null!==t.fragment&&(r(t.on_destroy),t.fragment&&t.fragment.d(n),t.on_destroy=t.fragment=null,t.ctx=[])}(this,1),this.$destroy=e}$on(e,n){const t=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return t.push(n),()=>{const e=t.indexOf(n);-1!==e&&t.splice(e,1)}}$set(e){var n;this.$$set&&(n=e,0!==Object.keys(n).length)&&(this.$$.skip_bound=!0,this.$$set(e),this.$$.skip_bound=!1)}}{constructor(e){super(),T(this,e,ce,ue,s,{})}}({target:document.body})}();
+
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function get_binding_group_value(group, __value, checked) {
+        const value = new Set();
+        for (let i = 0; i < group.length; i += 1) {
+            if (group[i].checked)
+                value.add(group[i].__value);
+        }
+        if (!checked) {
+            value.delete(__value);
+        }
+        return Array.from(value);
+    }
+    function to_number(value) {
+        return value === '' ? null : +value;
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function custom_event(type, detail, bubbles = false) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, bubbles, false, detail);
+        return e;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    // flush() calls callbacks in this order:
+    // 1. All beforeUpdate callbacks, in order: parents before children
+    // 2. All bind:this callbacks, in reverse order: children before parents.
+    // 3. All afterUpdate callbacks, in order: parents before children. EXCEPT
+    //    for afterUpdates called during the initial onMount, which are called in
+    //    reverse order: children before parents.
+    // Since callbacks might update component values, which could trigger another
+    // call to flush(), the following steps guard against this:
+    // 1. During beforeUpdate, any updated components will be added to the
+    //    dirty_components array and will cause a reentrant call to flush(). Because
+    //    the flush index is kept outside the function, the reentrant call will pick
+    //    up where the earlier call left off and go through all dirty components. The
+    //    current_component value is saved and restored so that the reentrant call will
+    //    not interfere with the "parent" flush() call.
+    // 2. bind:this callbacks cannot trigger new flush() calls.
+    // 3. During afterUpdate, any updated components will NOT have their afterUpdate
+    //    callback called a second time; the seen_callbacks set, outside the flush()
+    //    function, guarantees this behavior.
+    const seen_callbacks = new Set();
+    let flushidx = 0; // Do *not* move this inside the flush() function
+    function flush() {
+        const saved_component = current_component;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            while (flushidx < dirty_components.length) {
+                const component = dirty_components[flushidx];
+                flushidx++;
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            flushidx = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        seen_callbacks.clear();
+        set_current_component(saved_component);
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
+    function destroy_block(block, lookup) {
+        block.d(1);
+        lookup.delete(block.key);
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next);
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error('Cannot have duplicate keys in a keyed each');
+            }
+            keys.add(key);
+        }
+    }
+    function mount_component(component, target, anchor, customElement) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = on_mount.map(run).filter(is_function);
+                if (on_destroy) {
+                    on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, append_styles, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            on_disconnect: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(options.context || (parent_component ? parent_component.$$.context : [])),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false,
+            root: options.target || parent_component.$$.root
+        };
+        append_styles && append_styles($$.root);
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor, options.customElement);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.45.0' }, detail), true));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev('SvelteDOMInsert', { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev('SvelteDOMRemove', { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
+        else
+            dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev('SvelteDOMSetData', { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error("'target' is a required option");
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn('Component was already destroyed'); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+
+    const generatePaths = currencies => {
+      return currencies
+        .map(currency => currencies.map(currency2 => currencies.map(currency3 => {
+          if (currency !== currency2 && currency !== currency3 && currency2 !== currency3) {
+            return ({
+              path: [currency, currency2, currency3],
+              joined: `${currency}/${currency2}/${currency3}`,
+            })
+          }
+          return null
+        })))
+        .flat(2)
+        .filter(Boolean)
+        .reduce((acc, pathObj) => {
+          const {path} = pathObj;
+          const current = acc.map(a => a.joined);
+          if (
+            !current.includes(path.join())
+            && !current.includes([path[1], path[2], path[0]].join())
+            && !current.includes([path[2], path[0], path[1]].join())
+          ) {
+            acc.push(pathObj);
+          }
+          return acc
+        }, [])
+    };
+
+    const addPairs = pairings => path => ({
+      ...path,
+      pairs: path.path
+        .map((currency, idx) => {
+          const nextCurrency = path.path[path.path[idx + 1] ? idx + 1 : 0];
+          if (pairings[currency] && pairings[currency].includes(nextCurrency)) {
+            return {base: nextCurrency, quote: currency, side: 'BUY'}
+          }
+          if (pairings[nextCurrency] && pairings[nextCurrency].includes(currency)) {
+            return {base: currency, quote: nextCurrency, side: 'SELL'}
+          }
+          return null
+        })
+        .map(pair => {
+          if (pair) {
+            return {
+              ...pair,
+              get id() {
+                return `${this.base}${this.quote}`
+              },
+              get tickerName() {
+                return `${this.id.toLowerCase()}@bookTicker`
+              },
+            }
+          }
+          return null
+        }),
+    });
+
+    const addPercentChange = (prices, feePerTrade) => path => {
+      const rawFeePerTrade = (feePerTrade || 0) / 1000000;
+      const startBalance = 1;
+
+      const endBalance = path.pairs.reduce((balance, pair) => {
+        if (pair.side === 'BUY') {
+          const fee = balance * rawFeePerTrade;
+          const balanceAfterFee = balance - fee;
+          return balanceAfterFee / (prices[pair.id]?.['BUY'] || 0)
+        }
+        const balanceAfterSold = balance * (prices[pair.id]?.['SELL'] || Infinity);
+        const fee = balanceAfterSold * rawFeePerTrade;
+        return balanceAfterSold - fee
+      }, startBalance);
+
+      const finalBalance = endBalance - startBalance;
+
+      return {
+        ...path,
+        percent: finalBalance / Math.abs(startBalance) * 100,
+        isProfitable: finalBalance > 0,
+      }
+    };
+
+    let binanceApi;
+
+    const getMarketData = () => {
+      binanceApi = binanceApi || new window.ccxt.binance();
+      return binanceApi.loadMarkets()
+    };
+
+    const getPairings = () => {
+      return getMarketData()
+        .then(marketData => {
+          return Object.values(marketData).reduce((acc, market, idx) => {
+            // if (idx === 0) {
+            //   console.log(market)
+            // }
+
+            if (!market.active || !market.spot) {
+              return acc
+            }
+
+            if (!acc[market.quote]) {
+              acc[market.quote] = [market.base];
+            } else {
+              acc[market.quote].push(market.base);
+            }
+            return acc
+          }, {})
+        })
+        .then(pairings => {
+          return Object.entries(pairings).reduce((acc, [quote, bases]) => {
+            acc[quote] = bases.filter(base => {
+              if (acc[base]) {
+                return true
+              }
+              return Object.entries(pairings).some(([quote2, bases2]) => {
+                if (quote2 === quote) {
+                  return false
+                }
+                return bases2.includes(base)
+              })
+            });
+            return acc
+          }, {})
+        })
+    };
+
+    const subscribeAction = params => JSON.stringify({method: 'SUBSCRIBE', params, id: 1});
+    const unsubscribeAction = params => JSON.stringify({method: 'UNSUBSCRIBE', params, id: 312});
+
+    /* src\App.svelte generated by Svelte v3.45.0 */
+
+    const { Object: Object_1 } = globals;
+    const file = "src\\App.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[20] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[23] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[23] = list[i];
+    	return child_ctx;
+    }
+
+    // (120:6) {#each availableQuoteCurrencies as currency}
+    function create_each_block_2(ctx) {
+    	let label;
+    	let input;
+    	let input_value_value;
+    	let t0;
+    	let t1_value = /*currency*/ ctx[23] + "";
+    	let t1;
+    	let t2;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			label = element("label");
+    			input = element("input");
+    			t0 = space();
+    			t1 = text(t1_value);
+    			t2 = space();
+    			attr_dev(input, "type", "checkbox");
+    			input.__value = input_value_value = /*currency*/ ctx[23];
+    			input.value = input.__value;
+    			/*$$binding_groups*/ ctx[10][0].push(input);
+    			add_location(input, file, 121, 10, 3707);
+    			attr_dev(label, "class", "svelte-s1axyz");
+    			add_location(label, file, 120, 8, 3688);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, label, anchor);
+    			append_dev(label, input);
+    			input.checked = ~/*selectedCurrencies*/ ctx[1].indexOf(input.__value);
+    			append_dev(label, t0);
+    			append_dev(label, t1);
+    			append_dev(label, t2);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "change", /*input_change_handler*/ ctx[9]),
+    					listen_dev(input, "change", /*fillPaths*/ ctx[7], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*availableQuoteCurrencies*/ 4 && input_value_value !== (input_value_value = /*currency*/ ctx[23])) {
+    				prop_dev(input, "__value", input_value_value);
+    				input.value = input.__value;
+    			}
+
+    			if (dirty & /*selectedCurrencies*/ 2) {
+    				input.checked = ~/*selectedCurrencies*/ ctx[1].indexOf(input.__value);
+    			}
+
+    			if (dirty & /*availableQuoteCurrencies*/ 4 && t1_value !== (t1_value = /*currency*/ ctx[23] + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(label);
+    			/*$$binding_groups*/ ctx[10][0].splice(/*$$binding_groups*/ ctx[10][0].indexOf(input), 1);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(120:6) {#each availableQuoteCurrencies as currency}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (131:6) {#each availableBaseCurrencies as currency}
+    function create_each_block_1(ctx) {
+    	let label;
+    	let input;
+    	let input_value_value;
+    	let t0;
+    	let t1_value = /*currency*/ ctx[23] + "";
+    	let t1;
+    	let t2;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			label = element("label");
+    			input = element("input");
+    			t0 = space();
+    			t1 = text(t1_value);
+    			t2 = space();
+    			attr_dev(input, "type", "checkbox");
+    			input.__value = input_value_value = /*currency*/ ctx[23];
+    			input.value = input.__value;
+    			/*$$binding_groups*/ ctx[10][0].push(input);
+    			add_location(input, file, 132, 10, 4015);
+    			attr_dev(label, "class", "svelte-s1axyz");
+    			add_location(label, file, 131, 8, 3996);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, label, anchor);
+    			append_dev(label, input);
+    			input.checked = ~/*selectedCurrencies*/ ctx[1].indexOf(input.__value);
+    			append_dev(label, t0);
+    			append_dev(label, t1);
+    			append_dev(label, t2);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "change", /*input_change_handler_1*/ ctx[11]),
+    					listen_dev(input, "change", /*fillPaths*/ ctx[7], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*availableBaseCurrencies*/ 8 && input_value_value !== (input_value_value = /*currency*/ ctx[23])) {
+    				prop_dev(input, "__value", input_value_value);
+    				input.value = input.__value;
+    			}
+
+    			if (dirty & /*selectedCurrencies*/ 2) {
+    				input.checked = ~/*selectedCurrencies*/ ctx[1].indexOf(input.__value);
+    			}
+
+    			if (dirty & /*availableBaseCurrencies*/ 8 && t1_value !== (t1_value = /*currency*/ ctx[23] + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(label);
+    			/*$$binding_groups*/ ctx[10][0].splice(/*$$binding_groups*/ ctx[10][0].indexOf(input), 1);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(131:6) {#each availableBaseCurrencies as currency}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (143:8) {#if !isNaN(path.percent) && isFinite(path.percent)}
+    function create_if_block(ctx) {
+    	let div;
+    	let span0;
+    	let t0_value = /*path*/ ctx[20].percent.toFixed(4) + "";
+    	let t0;
+    	let t1;
+    	let t2;
+    	let span1;
+    	let t3_value = /*path*/ ctx[20].joined + "";
+    	let t3;
+    	let t4;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			span0 = element("span");
+    			t0 = text(t0_value);
+    			t1 = text("%");
+    			t2 = space();
+    			span1 = element("span");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			set_style(span0, "width", "5rem");
+    			set_style(span0, "font-weight", "bold");
+    			set_style(span0, "color", /*path*/ ctx[20].isProfitable ? 'green' : 'red');
+    			add_location(span0, file, 144, 12, 4425);
+    			set_style(span1, "width", "10rem");
+    			add_location(span1, file, 147, 12, 4594);
+    			set_style(div, "display", "flex");
+    			add_location(div, file, 143, 10, 4383);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, span0);
+    			append_dev(span0, t0);
+    			append_dev(span0, t1);
+    			append_dev(div, t2);
+    			append_dev(div, span1);
+    			append_dev(span1, t3);
+    			append_dev(div, t4);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*paths*/ 16 && t0_value !== (t0_value = /*path*/ ctx[20].percent.toFixed(4) + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*paths*/ 16) {
+    				set_style(span0, "color", /*path*/ ctx[20].isProfitable ? 'green' : 'red');
+    			}
+
+    			if (dirty & /*paths*/ 16 && t3_value !== (t3_value = /*path*/ ctx[20].joined + "")) set_data_dev(t3, t3_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(143:8) {#if !isNaN(path.percent) && isFinite(path.percent)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (142:6) {#each paths as path (path.joined)}
+    function create_each_block(key_1, ctx) {
+    	let first;
+    	let show_if = !isNaN(/*path*/ ctx[20].percent) && isFinite(/*path*/ ctx[20].percent);
+    	let if_block_anchor;
+    	let if_block = show_if && create_if_block(ctx);
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			first = empty();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    			this.first = first;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, first, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty & /*paths*/ 16) show_if = !isNaN(/*path*/ ctx[20].percent) && isFinite(/*path*/ ctx[20].percent);
+
+    			if (show_if) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(first);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(142:6) {#each paths as path (path.joined)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let div0;
+    	let h1;
+    	let t0;
+    	let span0;
+    	let t1;
+    	let t2;
+    	let t3;
+    	let div4;
+    	let div3;
+    	let span1;
+    	let t5;
+    	let div1;
+    	let t6;
+    	let input;
+    	let t7;
+    	let div2;
+    	let t8;
+    	let span2;
+    	let t9_value = /*feePerTrade*/ ctx[0] / 10000 + "";
+    	let t9;
+    	let t10;
+    	let t11;
+    	let div5;
+    	let t12;
+    	let div12;
+    	let div9;
+    	let div6;
+    	let t13;
+    	let div7;
+    	let t14;
+    	let div8;
+    	let t15;
+    	let div11;
+    	let div10;
+    	let each_blocks = [];
+    	let each2_lookup = new Map();
+    	let mounted;
+    	let dispose;
+    	let each_value_2 = /*availableQuoteCurrencies*/ ctx[2];
+    	validate_each_argument(each_value_2);
+    	let each_blocks_2 = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	let each_value_1 = /*availableBaseCurrencies*/ ctx[3];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*paths*/ ctx[4];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*path*/ ctx[20].joined;
+    	validate_each_keys(ctx, each_value, get_each_context, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each2_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			h1 = element("h1");
+    			t0 = text("Binance ");
+    			span0 = element("span");
+    			t1 = text("▲");
+    			t2 = text(" Triangular\r\n    arbitrage monitor");
+    			t3 = space();
+    			div4 = element("div");
+    			div3 = element("div");
+    			span1 = element("span");
+    			span1.textContent = "FEES";
+    			t5 = space();
+    			div1 = element("div");
+    			t6 = space();
+    			input = element("input");
+    			t7 = space();
+    			div2 = element("div");
+    			t8 = space();
+    			span2 = element("span");
+    			t9 = text(t9_value);
+    			t10 = text("%");
+    			t11 = space();
+    			div5 = element("div");
+    			t12 = space();
+    			div12 = element("div");
+    			div9 = element("div");
+    			div6 = element("div");
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t13 = space();
+    			div7 = element("div");
+    			t14 = space();
+    			div8 = element("div");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t15 = space();
+    			div11 = element("div");
+    			div10 = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			set_style(span0, "color", /*wsStatus*/ ctx[5] === 0
+    			? 'red'
+    			: /*wsStatus*/ ctx[5] === 1 ? 'orange' : 'green');
+
+    			add_location(span0, file, 99, 12, 3033);
+    			add_location(h1, file, 98, 2, 3015);
+    			attr_dev(div0, "class", "center-box svelte-s1axyz");
+    			add_location(div0, file, 97, 0, 2987);
+    			add_location(span1, file, 106, 4, 3262);
+    			set_style(div1, "width", "1rem");
+    			add_location(div1, file, 107, 4, 3285);
+    			attr_dev(input, "type", "number");
+    			add_location(input, file, 108, 4, 3323);
+    			set_style(div2, "width", "1rem");
+    			add_location(div2, file, 109, 4, 3397);
+    			add_location(span2, file, 110, 4, 3435);
+    			set_style(div3, "display", "flex");
+    			set_style(div3, "align-items", "center");
+    			add_location(div3, file, 105, 2, 3208);
+    			attr_dev(div4, "class", "center-box svelte-s1axyz");
+    			add_location(div4, file, 104, 0, 3180);
+    			set_style(div5, "height", "4rem");
+    			add_location(div5, file, 114, 0, 3492);
+    			attr_dev(div6, "class", "select svelte-s1axyz");
+    			add_location(div6, file, 118, 4, 3606);
+    			set_style(div7, "height", "1rem");
+    			add_location(div7, file, 127, 4, 3874);
+    			attr_dev(div8, "class", "select svelte-s1axyz");
+    			add_location(div8, file, 129, 4, 3915);
+    			set_style(div9, "width", "49vw");
+    			add_location(div9, file, 117, 2, 3574);
+    			set_style(div10, "display", "flex");
+    			set_style(div10, "flex-wrap", "wrap");
+    			add_location(div10, file, 140, 4, 4222);
+    			set_style(div11, "width", "49vw");
+    			add_location(div11, file, 139, 2, 4190);
+    			set_style(div12, "width", "98vw");
+    			set_style(div12, "display", "flex");
+    			add_location(div12, file, 116, 0, 3529);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, h1);
+    			append_dev(h1, t0);
+    			append_dev(h1, span0);
+    			append_dev(span0, t1);
+    			append_dev(h1, t2);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div3);
+    			append_dev(div3, span1);
+    			append_dev(div3, t5);
+    			append_dev(div3, div1);
+    			append_dev(div3, t6);
+    			append_dev(div3, input);
+    			set_input_value(input, /*feePerTrade*/ ctx[0]);
+    			append_dev(div3, t7);
+    			append_dev(div3, div2);
+    			append_dev(div3, t8);
+    			append_dev(div3, span2);
+    			append_dev(span2, t9);
+    			append_dev(span2, t10);
+    			insert_dev(target, t11, anchor);
+    			insert_dev(target, div5, anchor);
+    			insert_dev(target, t12, anchor);
+    			insert_dev(target, div12, anchor);
+    			append_dev(div12, div9);
+    			append_dev(div9, div6);
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(div6, null);
+    			}
+
+    			append_dev(div9, t13);
+    			append_dev(div9, div7);
+    			append_dev(div9, t14);
+    			append_dev(div9, div8);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(div8, null);
+    			}
+
+    			append_dev(div12, t15);
+    			append_dev(div12, div11);
+    			append_dev(div11, div10);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div10, null);
+    			}
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[8]),
+    					listen_dev(input, "keyup", /*addPercent*/ ctx[6], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*wsStatus*/ 32) {
+    				set_style(span0, "color", /*wsStatus*/ ctx[5] === 0
+    				? 'red'
+    				: /*wsStatus*/ ctx[5] === 1 ? 'orange' : 'green');
+    			}
+
+    			if (dirty & /*feePerTrade*/ 1 && to_number(input.value) !== /*feePerTrade*/ ctx[0]) {
+    				set_input_value(input, /*feePerTrade*/ ctx[0]);
+    			}
+
+    			if (dirty & /*feePerTrade*/ 1 && t9_value !== (t9_value = /*feePerTrade*/ ctx[0] / 10000 + "")) set_data_dev(t9, t9_value);
+
+    			if (dirty & /*availableQuoteCurrencies, selectedCurrencies, fillPaths*/ 134) {
+    				each_value_2 = /*availableQuoteCurrencies*/ ctx[2];
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_2[i] = create_each_block_2(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(div6, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+
+    				each_blocks_2.length = each_value_2.length;
+    			}
+
+    			if (dirty & /*availableBaseCurrencies, selectedCurrencies, fillPaths*/ 138) {
+    				each_value_1 = /*availableBaseCurrencies*/ ctx[3];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(div8, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*paths, isNaN, isFinite*/ 16) {
+    				each_value = /*paths*/ ctx[4];
+    				validate_each_argument(each_value);
+    				validate_each_keys(ctx, each_value, get_each_context, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each2_lookup, div10, destroy_block, create_each_block, null, get_each_context);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(div4);
+    			if (detaching) detach_dev(t11);
+    			if (detaching) detach_dev(div5);
+    			if (detaching) detach_dev(t12);
+    			if (detaching) detach_dev(div12);
+    			destroy_each(each_blocks_2, detaching);
+    			destroy_each(each_blocks_1, detaching);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d();
+    			}
+
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('App', slots, []);
+    	let feePerTrade = 1000;
+    	let selectedCurrencies = [];
+    	let availableQuoteCurrencies = [];
+    	let availableBaseCurrencies = [];
+    	let paths = [];
+    	let prices = {};
+    	let pairings = {};
+    	let activePairIds = [];
+    	let ws;
+    	let wsStatus = 0;
+    	let sortingInterval;
+
+    	onMount(() => {
+    		getPairings().then(remotePairings => {
+    			pairings = remotePairings;
+    			$$invalidate(2, availableQuoteCurrencies = Object.keys(remotePairings));
+    			$$invalidate(3, availableBaseCurrencies = [...new Set(Object.values(remotePairings).flat(1))].filter(base => !Object.keys(remotePairings).includes(base)));
+    		});
+
+    		initTicker();
+    	});
+
+    	function initTicker() {
+    		ws = new WebSocket('wss://stream.binance.com/stream');
+
+    		ws.onopen = () => {
+    			$$invalidate(5, wsStatus = 2);
+    			sortingInterval = setInterval(sortPaths, 1000);
+
+    			if (activePairIds.length > 0) {
+    				ws.send(subscribeAction(activePairIds));
+    			}
+    		};
+
+    		ws.onmessage = stream => {
+    			const data = JSON.parse(stream.data);
+
+    			if (data === null || data === void 0 ? void 0 : data.data) {
+    				const { s, a, b } = data.data;
+    				prices[s] = { 'BUY': a, 'SELL': b };
+    			}
+
+    			addPercent();
+    		};
+
+    		ws.onclose = () => {
+    			$$invalidate(5, wsStatus = 0);
+    			clearInterval(sortingInterval);
+
+    			setTimeout(
+    				() => {
+    					$$invalidate(5, wsStatus = 1);
+    					initTicker();
+    				},
+    				1000
+    			);
+    		};
+    	}
+
+    	function handleWsSubsriptions(possiblePaths) {
+    		const pairIds = [
+    			...new Set(possiblePaths.flatMap(path => path.pairs.map(pair => pair.tickerName)))
+    		];
+
+    		pairIds.forEach(pairId => {
+    			if (!activePairIds.includes(pairId)) {
+    				ws.send(subscribeAction([pairId]));
+    				activePairIds = [...activePairIds, pairId];
+    			}
+    		});
+
+    		activePairIds.forEach(activePairId => {
+    			if (!pairIds.includes(activePairId)) {
+    				ws.send(unsubscribeAction([activePairId]));
+    				activePairIds = activePairIds.filter(pairId => pairId !== activePairId);
+    			}
+    		});
+    	}
+
+    	function sortPaths() {
+    		$$invalidate(4, paths = paths.sort((a, b) => b.percent - a.percent));
+    	}
+
+    	function addPercent(possiblePaths = paths) {
+    		$$invalidate(4, paths = possiblePaths.map(addPercentChange(prices, feePerTrade)));
+    	}
+
+    	function fillPaths() {
+    		const possiblePaths = generatePaths(selectedCurrencies).map(addPairs(pairings)).filter(path => path.pairs.every(Boolean));
+    		handleWsSubsriptions(possiblePaths);
+    		addPercent(possiblePaths);
+    	}
+
+    	const writable_props = [];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
+    	});
+
+    	const $$binding_groups = [[]];
+
+    	function input_input_handler() {
+    		feePerTrade = to_number(this.value);
+    		$$invalidate(0, feePerTrade);
+    	}
+
+    	function input_change_handler() {
+    		selectedCurrencies = get_binding_group_value($$binding_groups[0], this.__value, this.checked);
+    		$$invalidate(1, selectedCurrencies);
+    	}
+
+    	function input_change_handler_1() {
+    		selectedCurrencies = get_binding_group_value($$binding_groups[0], this.__value, this.checked);
+    		$$invalidate(1, selectedCurrencies);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		addPairs,
+    		addPercentChange,
+    		generatePaths,
+    		getPairings,
+    		subscribeAction,
+    		unsubscribeAction,
+    		onMount,
+    		feePerTrade,
+    		selectedCurrencies,
+    		availableQuoteCurrencies,
+    		availableBaseCurrencies,
+    		paths,
+    		prices,
+    		pairings,
+    		activePairIds,
+    		ws,
+    		wsStatus,
+    		sortingInterval,
+    		initTicker,
+    		handleWsSubsriptions,
+    		sortPaths,
+    		addPercent,
+    		fillPaths
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('feePerTrade' in $$props) $$invalidate(0, feePerTrade = $$props.feePerTrade);
+    		if ('selectedCurrencies' in $$props) $$invalidate(1, selectedCurrencies = $$props.selectedCurrencies);
+    		if ('availableQuoteCurrencies' in $$props) $$invalidate(2, availableQuoteCurrencies = $$props.availableQuoteCurrencies);
+    		if ('availableBaseCurrencies' in $$props) $$invalidate(3, availableBaseCurrencies = $$props.availableBaseCurrencies);
+    		if ('paths' in $$props) $$invalidate(4, paths = $$props.paths);
+    		if ('prices' in $$props) prices = $$props.prices;
+    		if ('pairings' in $$props) pairings = $$props.pairings;
+    		if ('activePairIds' in $$props) activePairIds = $$props.activePairIds;
+    		if ('ws' in $$props) ws = $$props.ws;
+    		if ('wsStatus' in $$props) $$invalidate(5, wsStatus = $$props.wsStatus);
+    		if ('sortingInterval' in $$props) sortingInterval = $$props.sortingInterval;
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		feePerTrade,
+    		selectedCurrencies,
+    		availableQuoteCurrencies,
+    		availableBaseCurrencies,
+    		paths,
+    		wsStatus,
+    		addPercent,
+    		fillPaths,
+    		input_input_handler,
+    		input_change_handler,
+    		$$binding_groups,
+    		input_change_handler_1
+    	];
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "App",
+    			options,
+    			id: create_fragment.name
+    		});
+    	}
+    }
+
+    var app = new App({
+        target: document.body
+    });
+
+    return app;
+
+})();
 //# sourceMappingURL=bundle.js.map
