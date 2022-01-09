@@ -13,7 +13,7 @@ export const generatePaths = currencies => {
     .filter(Boolean)
     .reduce((acc, pathObj) => {
       const {path} = pathObj
-      const current = acc.map(a => a.joined)
+      const current = acc.map(a => a.path.join())
       if (
         !current.includes(path.join())
         && !current.includes([path[1], path[2], path[0]].join())
