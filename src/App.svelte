@@ -2,12 +2,14 @@
   import {addPairs, addPercentChange, generatePaths} from './utils/path-utils'
   import {getPairings, subscribeAction, unsubscribeAction} from './utils/exchange'
   import {onMount} from 'svelte'
+  import StickyContent from "./components/StickyContent.svelte";
 
-  let feePerTrade = 750
-  let selectedCurrencies = []
+  let feePerTrade = 75
+  let selectedAssets = []
 
-  let availableQuoteCurrencies = []
-  let availableBaseCurrencies = []
+  let availableQuoteAssets = []
+  let availableBaseAssets = []
+  let relatedQuoteAssets = []
   let paths = []
   let prices = {}
   let pairings = {}
@@ -20,8 +22,8 @@
   onMount(() => {
     getPairings().then(remotePairings => {
       pairings = remotePairings
-      availableQuoteCurrencies = Object.keys(remotePairings)
-      availableBaseCurrencies = [...new Set(Object.values(remotePairings).flat(1))]
+      availableQuoteAssets = Object.keys(remotePairings)
+      availableBaseAssets = [...new Set(Object.values(remotePairings).flat(1))]
         .filter(base => !Object.keys(remotePairings).includes(base))
     })
 
@@ -76,16 +78,42 @@
   }
 
   function addPercent(possiblePaths = paths) {
-    paths = possiblePaths.map(addPercentChange(prices, feePerTrade))
+    paths = possiblePaths.map(addPercentChange(prices, feePerTrade)).filter(Boolean)
   }
 
   function fillPaths() {
-    const possiblePaths = generatePaths(selectedCurrencies)
+    const possiblePaths = generatePaths(selectedAssets)
       .map(addPairs(pairings))
       .filter(path => path.pairs.every(Boolean))
 
     handleWsSubscriptions(possiblePaths)
     addPercent(possiblePaths)
+  }
+
+  function toggleAsset(asset) {
+    if (selectedAssets.includes(asset)) {
+      selectedAssets = selectedAssets.filter(c => c !== asset)
+    } else {
+      selectedAssets = [...selectedAssets, asset]
+    }
+    fillPaths()
+  }
+
+  function showRelatedQuoteAssets(asset) {
+    relatedQuoteAssets = Object.keys(pairings).filter(c => pairings[c].includes(asset))
+  }
+
+  function resetRelatedQuoteAssets() {
+    relatedQuoteAssets = [];
+  }
+
+  function quoteBackgroundColor(selectedAssets: string[], relatedQuoteAssets: string[], asset: string) {
+    const isSelected = selectedAssets.includes(asset)
+    const isRelated = relatedQuoteAssets.includes(asset)
+    return isSelected && isRelated ? '#c8c8e6'
+      : isSelected ? '#c8c8c8'
+        : isRelated ? '#c8c8ff'
+          : '#fff'
   }
 </script>
 
@@ -99,29 +127,59 @@
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: #fafafa;
+    background-color: #fafaff;
   }
 
+  li a {
+    color: #333;
+    text-decoration: none;
+  }
 </style>
 
 <div class="h-4"></div>
 
-<div class="flex justify-center items-center">
-  <h1 class="text-2xl">
-    Binance <span style="color: {wsStatus}">▲</span> Triangular arbitrage monitor
-  </h1>
-</div>
+<div class="flex">
+  <div class="w-1/3">
+    <div class="w-full h-full flex justify-center items-center">
+      <img class="w-40" alt="logo"
+           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_Comit%C3%A9_d%27arbitrage.svg/1024px-Logo_Comit%C3%A9_d%27arbitrage.svg.png"/>
+    </div>
+  </div>
+  <div class="w-4"></div>
+  <div class="flex flex-col w-2/3">
+    <h1 class="text-2xl">
+      Binance <span id="websocket-status" style="color: {wsStatus}">▲</span> Triangular arbitrage monitor
+    </h1>
+    <h2 class="test-xl">
+      Monitoring arbitrage opportunities on Binance
+    </h2>
+    <div class="h-4"></div>
+    <p class="w-[50vw]">
+      This app monitors arbitrage opportunities on Binance. It is a web app that uses the Binance API to fetch the
+      current price of the assets and then calculates the arbitrage opportunities. The arbitrage opportunities are then
+      displayed in a table.
+    </p>
 
-<div class="h-4"></div>
+    <div class="h-4"></div>
 
-<div class="flex justify-center items-center">
-  <div class="p-4 shadow">
-    <div class="flex items-center">
-      <span>FEES</span>
-      <div class="w-4"></div>
-      <input bind:value={feePerTrade} on:keyup={addPercent} type="number">
-      <div class="w-4"></div>
-      <span>{feePerTrade / 10000}%</span>
+    <div class="p-4 shadow rounded bg-white">
+      <div class="flex items-center justify-between">
+        <nav>
+          <ul class="flex gap-4">
+            <li><a class="font-bold" href="#">Triangular</a></li>
+            <li><a href="#">Squared</a></li>
+            <li><a href="#">Quintupular</a></li>
+          </ul>
+        </nav>
+
+        <form id="fees" class="flex items-center justify-center">
+          <span>FEES</span>
+          <div class="w-4"></div>
+          <input bind:value={feePerTrade} on:keyup={() => addPercent()} type="number" class="p-1">
+          <div class="w-4"></div>
+          <span class="font-mono">{(feePerTrade / 1000).toFixed(4)}%</span>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -131,50 +189,61 @@
 <div class="w-full flex">
   <div class="w-1/3">
 
-    <div class="p-4 shadow">
-      <div class="text-xl">Quote Currencies</div>
-      <div class="flex flex-wrap">
-        {#each availableQuoteCurrencies as currency}
-          <label class="w-24">
-            <input type=checkbox bind:group={selectedCurrencies} value={currency} on:change={fillPaths}>
-            {currency}
-          </label>
-        {/each}
-      </div>
-    </div>
+    <div id="asset-buttons" class="shadow rounded bg-white">
+      <StickyContent>
 
-    <div class="h-4"></div>
+        <div slot="content">
+          <div class="text-xl">Quote Assets</div>
+          <div class="flex flex-wrap justify-center">
+            {#each availableQuoteAssets as asset}
+              <button class="w-24 mr-1 mb-1"
+                      value={asset}
+                      style="background-color: {quoteBackgroundColor(selectedAssets, relatedQuoteAssets, asset)}"
+                      on:click={() => toggleAsset(asset)}
+                      on:mouseenter={() => showRelatedQuoteAssets(asset)}
+                      on:mouseleave={resetRelatedQuoteAssets}>
+                {asset}
+              </button>
+            {/each}
+          </div>
+        </div>
 
-    <div class="p-4 shadow">
-      <div class="text-xl">Base Currencies</div>
-      <div class="flex flex-wrap select">
-        {#each availableBaseCurrencies as currency}
-          <label class="w-24">
-            <input type=checkbox bind:group={selectedCurrencies} value={currency} on:change={fillPaths}>
-            {currency}
-          </label>
-        {/each}
-      </div>
+        <div slot="wrapper" class="p-4">
+          <div class="h-4"></div>
+          <div class="text-xl">Base Assets</div>
+          <div class="flex flex-wrap justify-center">
+            {#each availableBaseAssets as asset}
+              <button class="w-24 mr-1 mb-1"
+                      value={asset}
+                      style="background-color: {selectedAssets.includes(asset) ? '#c8c8c8' : '#fff'}"
+                      on:click={() => toggleAsset(asset)}
+                      on:mouseenter={() => showRelatedQuoteAssets(asset)}
+                      on:mouseleave={resetRelatedQuoteAssets}>
+                {asset}
+              </button>
+            {/each}
+          </div>
+        </div>
+
+      </StickyContent>
     </div>
   </div>
 
   <div class="w-4"></div>
 
   <div class="w-2/3">
-    <div class="p-4 shadow">
+    <div class="p-4 shadow rounded bg-white">
       <div class="text-xl flex justify-center">Paths</div>
       <div class="flex flex-wrap justify-center">
         {#each paths as path (path.joined)}
-          {#if !isNaN(path.percent) && isFinite(path.percent)}
-            <div class="flex">
-              <span class="w-20 font-bold font-mono flex justify-end"
-                    style="color: {path.isProfitable ? 'green' : 'red'};">
-                {path.percent.toFixed(4)}%
-              </span>
-              <div class="w-1"></div>
-              <span class="w-40">{path.joined}</span>
-            </div>
-          {/if}
+          <div class="flex">
+            <span class="w-20 font-bold font-mono flex justify-end"
+                  style="color: {path.isProfitable ? 'green' : 'red'};">
+              {path.percent}%
+            </span>
+            <div class="w-1"></div>
+            <span class="w-40">{path.joined}</span>
+          </div>
         {/each}
       </div>
     </div>
@@ -182,3 +251,7 @@
 </div>
 
 <div class="h-4"></div>
+
+<footer>
+  © 2022 - Vince Liem
+</footer>

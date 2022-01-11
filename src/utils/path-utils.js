@@ -55,10 +55,14 @@ export const addPairs = pairings => path => ({
 })
 
 export const addPercentChange = (prices, feePerTrade) => path => {
-  const rawFeePerTrade = (feePerTrade || 0) / 1000000
+  const rawFeePerTrade = (feePerTrade || 0) / 100000
   const startBalance = 1
 
   const endBalance = path.pairs.reduce((balance, pair) => {
+    if (!prices[pair.id] || balance == null) {
+      return null
+    }
+
     if (pair.side === 'BUY') {
       const fee = balance * rawFeePerTrade
       const balanceAfterFee = balance - fee
@@ -69,11 +73,15 @@ export const addPercentChange = (prices, feePerTrade) => path => {
     return balanceAfterSold - fee
   }, startBalance)
 
+  if (endBalance == null) {
+    return null
+  }
+
   const finalBalance = endBalance - startBalance
 
   return {
     ...path,
-    percent: finalBalance / Math.abs(startBalance) * 100,
+    percent: (finalBalance / Math.abs(startBalance) * 100).toFixed(4),
     isProfitable: finalBalance > 0,
   }
 }
