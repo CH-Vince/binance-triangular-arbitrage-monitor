@@ -1,6 +1,6 @@
 describe('header', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
   it('Shows the title', () => {
@@ -26,22 +26,22 @@ describe('header', () => {
 
 describe('navigation', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
-  it('Shows the navigation', () => {
+  it('should show the navigation', () => {
     cy.get('nav').first().should('contain.text', 'Triangular');
-    cy.get('nav').first().should('contain.text', 'Squared');
+    cy.get('nav').first().should('contain.text', 'Quadupular');
     cy.get('nav').first().should('contain.text', 'Quintupular');
   });
 });
 
 describe('Fees form', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
-  it('Shows the FEES settings', () => {
+  it('should show the FEES settings', () => {
     cy.get('#fees').should('contain.text', 'FEES');
   });
 
@@ -77,11 +77,11 @@ describe('Fees form', () => {
     cy.get('#fees input').clear().type('100');
     cy.get('#fees span').last().should('contain.text', '0.1000%');
   });
-})
+});
 
 describe('Websocket connection display', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
   it('should show the websocket connection status', () => {
@@ -95,11 +95,25 @@ describe('Websocket connection display', () => {
   it('should show the websocket connection status as connected', () => {
     cy.get('#websocket-status').should('have.css', 'color', 'rgb(0, 128, 0)');
   });
+});
+
+describe('Asset buttons description', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080/');
+  });
+
+  it('should show the asset buttons description', () => {
+    cy.get('#asset-buttons-description').should('contain.text', 'Select assets');
+  });
+
+  it('should show the asset buttons description', () => {
+    cy.get('#asset-buttons-description').should('contain.text', 'Click on the assets you want to monitor.');
+  });
 })
 
 describe('Asset buttons display', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
   it('should show asset buttons', () => {
@@ -112,16 +126,15 @@ describe('Asset buttons display', () => {
     cy.get('#asset-buttons button').should('contain.text', 'BNB');
     cy.get('#asset-buttons button').should('contain.text', 'USDT');
   });
-})
+});
 
 describe('Asset buttons hover', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/')
+    cy.visit('http://localhost:8080/');
   });
 
-  it('should highlight related quote assets of BTC', () => {
-    const button = cy.get('#asset-buttons button').contains('BTC')
-    button.trigger('mouseenter');
+  it('should highlight related quote assets of BTC asset', () => {
+    const button = cy.get('#asset-buttons button').contains('BTC').trigger('mouseenter');
     cy.get('#asset-buttons button').contains('USDT').should('have.css', 'background-color', 'rgb(200, 200, 255)');
     cy.get('#asset-buttons button').contains('TUSD').should('have.css', 'background-color', 'rgb(200, 200, 255)');
     cy.get('#asset-buttons button').contains('BUSD').should('have.css', 'background-color', 'rgb(200, 200, 255)');
@@ -129,15 +142,63 @@ describe('Asset buttons hover', () => {
     cy.get('#asset-buttons button').should('not.have.css', 'background-color', 'rgb(200, 200, 255)');
   });
 
-  it('should highlight related quote assets of ONE', () => {
-    const button = cy.get('#asset-buttons button').contains('ONE')
-    button.trigger('mouseenter');
+  it('should highlight related quote assets of ONE asset', () => {
+    const button = cy.get('#asset-buttons button').contains('ONE').trigger('mouseenter');
     cy.get('#asset-buttons button').contains('BTC').should('have.css', 'background-color', 'rgb(200, 200, 255)');
     cy.get('#asset-buttons button').contains('ETH').should('have.css', 'background-color', 'rgb(200, 200, 255)');
     cy.get('#asset-buttons button').contains('BNB').should('have.css', 'background-color', 'rgb(200, 200, 255)');
     button.trigger('mouseleave');
     cy.get('#asset-buttons button').should('not.have.css', 'background-color', 'rgb(200, 200, 255)');
-  })
+  });
+
+  function pressBtcEthBnb() {
+    cy.get('#websocket-status').should('have.css', 'color', 'rgb(0, 128, 0)');
+    cy.get('#asset-buttons button').contains('BTC')
+      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+    cy.get('#asset-buttons button').contains('ETH')
+      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+    cy.get('#asset-buttons button').contains('BNB')
+      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+  }
+
+  it('should show that assets are selected', () => {
+    pressBtcEthBnb();
+  });
+
+  it('should highlight a selected button of DOT asset', () => {
+    pressBtcEthBnb();
+
+    cy.get('#asset-buttons button').contains('DOT').trigger('mouseenter');
+
+    cy.get('#asset-buttons button').contains('BTC')
+      .should('have.css', 'background-color', 'rgb(200, 200, 230)');
+    cy.get('#asset-buttons button').contains('ETH')
+      .should('have.css', 'background-color', 'rgb(200, 200, 230)');
+    cy.get('#asset-buttons button').contains('BNB')
+      .should('have.css', 'background-color', 'rgb(200, 200, 230)');
+
+    cy.get('#asset-buttons button').contains('USDT')
+      .should('have.css', 'background-color', 'rgb(200, 200, 255)');
+
+    cy.get('#asset-buttons button').contains('DOT').trigger('mouseleave');
+    cy.get('#asset-buttons button')
+      .should('not.have.css', 'background-color', 'rgb(200, 200, 255)')
+      .should('not.have.css', 'background-color', 'rgb(200, 200, 230)');
+
+    cy.get('#asset-buttons button').contains('BTC')
+      .should('have.css', 'background-color', 'rgb(200, 200, 200)');
+    cy.get('#asset-buttons button').contains('ETH')
+      .should('have.css', 'background-color', 'rgb(200, 200, 200)');
+    cy.get('#asset-buttons button').contains('BNB')
+      .should('have.css', 'background-color', 'rgb(200, 200, 200)');
+
+    cy.get('#asset-buttons button').contains('USDT')
+      .should('have.css', 'background-color', 'rgb(255, 255, 255)');
+  });
+});
+
+describe('websocket connection', () => {
+
 })
 
 export {};

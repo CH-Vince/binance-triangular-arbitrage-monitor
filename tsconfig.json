@@ -9,6 +9,8 @@
     "docs/*"
   ],
   "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
     "sourceMap": true,
   }
 }
