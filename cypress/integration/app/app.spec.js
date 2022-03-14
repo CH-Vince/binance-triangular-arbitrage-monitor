@@ -103,7 +103,7 @@ describe('Asset buttons description', () => {
   });
 
   it('should show the asset buttons description', () => {
-    cy.get('#asset-buttons-description').should('contain.text', 'Select assets');
+    cy.get('#asset-buttons-description').should('contain.text', 'Select Assets');
   });
 
   it('should show the asset buttons description', () => {
@@ -151,14 +151,14 @@ describe('Asset buttons hover', () => {
     cy.get('#asset-buttons button').should('not.have.css', 'background-color', 'rgb(200, 200, 255)');
   });
 
-  function pressBtcEthBnb() {
+  function pressBtcEthBnb(colorMatch = 'rgb(200, 200, 200)') {
     cy.get('#websocket-status').should('have.css', 'color', 'rgb(0, 128, 0)');
     cy.get('#asset-buttons button').contains('BTC')
-      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+      .trigger('click').should('have.css', 'background-color', colorMatch);
     cy.get('#asset-buttons button').contains('ETH')
-      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+      .trigger('click').should('have.css', 'background-color', colorMatch);
     cy.get('#asset-buttons button').contains('BNB')
-      .trigger('click').should('have.css', 'background-color', 'rgb(200, 200, 200)');
+      .trigger('click').should('have.css', 'background-color', colorMatch);
   }
 
   it('should show that assets are selected', () => {
@@ -194,6 +194,9 @@ describe('Asset buttons hover', () => {
 
     cy.get('#asset-buttons button').contains('USDT')
       .should('have.css', 'background-color', 'rgb(255, 255, 255)');
+
+    cy.scrollTo('top');
+    pressBtcEthBnb('rgb(255, 255, 255)');
   });
 });
 

@@ -165,9 +165,9 @@
     </h2>
     <div class="h-4"></div>
     <p class="w-[50vw]">
-      This app monitors arbitrage opportunities on Binance. It is a web app that uses the Binance API to fetch the
-      current price of the assets and then calculates the arbitrage opportunities. The arbitrage opportunities are then
-      displayed in a table.
+      This app monitors arbitrage opportunities on Binance.
+      It uses the Binance API to fetch the current price of the assets and calculates the arbitrage opportunities.
+      The arbitrage opportunity table is displayed after fetching the data from Binance.
     </p>
 
     <div class="h-4"></div>
@@ -185,7 +185,7 @@
         <form id="fees" class="flex items-center justify-center">
           <span>FEES</span>
           <div class="w-4"></div>
-          <input bind:value={feePerTrade} on:keyup={() => addPercent()} type="number" class="p-1">
+          <input bind:value={feePerTrade} on:keyup={() => addPercent(paths)} type="number" class="p-1">
           <div class="w-4"></div>
           <span class="font-mono">{(feePerTrade / 1000).toFixed(4)}%</span>
         </form>
@@ -203,15 +203,13 @@
       <div id="asset-buttons-description" class="p-4">
         <div class="text-2xl">Select Assets</div>
         <p>
-          Click on the assets you want to monitor. First select a couple of quote asset, then the base assets.
-          Hovering over an asset will highlight the related quote assets.
-          Once you've selected base and quote assets, the arbitrage results will be displayed on the right.
+          o monitor arbitrage opportunities, you need to first select a couple of quote assets.
+          Hovering over an asset will highlight the related base assets.
+          Next, you'll need to select the arbitrage opportunities you want to monitor from the table on the right.
         </p>
-
       </div>
       <StickyContent>
-
-        <div slot="content">
+        <div slot="content" class="p-4">
           <div>
             <span class="text-xl">Quote Assets</span>
             <span>(select at least 2)</span>

@@ -13,7 +13,7 @@
 <style>
   .sticky {
     position: sticky;
-    @apply bg-white transition-all duration-300 p-4;
+    @apply bg-white transition-all duration-300;
   }
 
   .sticky[data-position='top'] {
